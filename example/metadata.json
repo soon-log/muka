@@ -1,0 +1,7 @@
+{
+  "name": "MUKA (뮤카)",
+  "description": "A warm and emotional music recommendation service where friends exchange cards with curated tracks.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
