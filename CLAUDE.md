@@ -121,6 +121,7 @@ public/               # Static assets
 - Use environment variables for secrets
 - Use Context7 MCP before installing or using any library to check latest docs
 - Use pnpm for all package operations
+- Update File Structure in CLAUDE.md when adding/removing top-level directories
 
 ### Ask First
 
