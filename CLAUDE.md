@@ -1,152 +1,156 @@
-# CLAUDE.md
-
-Project-specific instructions for Claude Code.
-
-## Tech Stack
-
-- **Framework**: Next.js 16 (App Router, Turbopack)
-- **Language**: TypeScript 5 (strict mode)
-- **UI**: React 19, Tailwind CSS 4
-- **State**: Zustand
-- **Testing**: Vitest (unit), Playwright (e2e)
-- **Package Manager**: pnpm
-
-## Commands
+## Common Commands
 
 ```bash
-pnpm dev              # Start dev server (Turbopack)
-pnpm build            # Production build
-pnpm lint             # Run ESLint
-pnpm lint:fix         # Fix lint errors
-pnpm format           # Format with Prettier
-pnpm format:check     # Check formatting
-pnpm test             # Run unit tests
-pnpm test:coverage    # Run tests with coverage
-pnpm test:e2e         # Run Playwright e2e tests
-pnpm typecheck        # TypeScript type check
+# Development
+pnpm dev                    # Start development server
+pnpm build                  # Build for production
+pnpm preview                # Preview production build
+
+# Testing
+pnpm test                   # Run unit tests (Vitest)
+pnpm test:watch             # Run tests in watch mode
+pnpm test:coverage          # Run tests with coverage report
+pnpm test:e2e               # Run E2E tests (Playwright)
+
+# Code Quality
+pnpm lint                   # Run ESLint
+pnpm lint:fix               # Run ESLint with auto-fix
+pnpm format                 # Format code with Prettier
+pnpm format:check           # Check formatting without changes
+pnpm typecheck              # Run TypeScript type checking
 ```
 
-## Architecture (FSD + App Router)
+---
+
+## Project Overview
+
+**MUKA** - A service where users request music recommendations from friends and receive responses as shareable cards
+
+### Tech Stack
+
+- **Framework**: Next.js 16.1.4, React 19.2.3
+- **Styling**: Tailwind CSS 4
+- **Database**: Neon DB (PostgreSQL)
+- **APIs**: Spotify Web API, Kakao SDK
+- **Image**: Satori (@vercel/og)
+- **Testing**: Vitest 4.0.17, React Testing Library 16.3.2, Playwright 1.57.0
+- **Quality**: ESLint 9, Prettier 3.8.0, TypeScript 5
+
+### Core Features
+
+- Select from 7 question templates and generate one-time links
+- Spotify music search (no login required)
+- 7 card designs with swipe selection
+- KakaoTalk sharing + image save
+- Streaming app integration (Spotify, YouTube Music, Melon)
+
+Detailed documentation in `doc/`:
+
+| Doc File        | Contents                          |
+| --------------- | --------------------------------- |
+| prd.md          | Product requirements, user flows  |
+| trd.md          | Technical architecture, API specs |
+| design-guide.md | UI/UX guidelines, card designs    |
+
+---
+
+## Core Philosophy
+
+You are Claude Code. I use specialized agents and skills for complex tasks.
+
+**Key Principles:**
+
+1. **Agent-First**: Delegate to specialized agents for complex work
+2. **Plan Before Execute**: Use Plan Mode for complex operations
+3. **Test-Driven**: Write tests before implementation
+4. **Security-First**: Never compromise on security
+
+## Modular Rules
+
+Detailed guidelines are in `rules/`:
+
+| Rule File       | Contents                                           |
+| --------------- | -------------------------------------------------- |
+| architecture.md | FSD architecture, layer rules, Next.js integration |
+| security.md     | Security checks, secret management                 |
+| coding-style.md | Immutability, file organization, error handling    |
+| testing.md      | TDD workflow, 80% coverage requirement             |
+| git-workflow.md | Commit format, PR workflow                         |
+| patterns.md     | API response, repository patterns                  |
+| performance.md  | Model selection, context management                |
+
+---
+
+## File Structure
 
 ```
 src/
-├── app/                  # Next.js App Router (routing only)
-│   ├── (routes)/         # Route groups
-│   ├── layout.tsx
-│   └── page.tsx
-├── features/             # Feature modules (user-facing)
-├── entities/             # Business entities
-├── shared/               # Shared resources
-│   ├── ui/               # Reusable UI components
-│   ├── hooks/            # Custom React hooks
-│   ├── utils/            # Utility functions
-│   └── types/            # Shared TypeScript types
-└── widgets/              # Composite UI blocks
+|-- app/              # Next.js app router (pages, API routes)
+e2e/                  # Playwright E2E tests
+doc/                  # Project documentation (PRD, TRD, Design)
+rules/                # Modular coding guidelines
+public/               # Static assets
 ```
 
-**FSD Import Rules**: `shared → entities → features → widgets → app`
+---
 
-## Code Style
+## Personal Preferences
 
-### TypeScript
+### Code Style
 
-- Strict mode enabled (`noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`)
-- Explicit return types for functions
-- No `any` — use `unknown` with type guards
-- Prefix unused variables with `_`
+- No emojis in code, comments, or documentation
+- Prefer immutability - never mutate objects or arrays
+- Many small files over few large files
+- 200-400 lines typical, 800 max per file
 
-### Avoid enum — Use `as const` pattern
+### Git
 
-```typescript
-// ❌ Bad
-enum Status { ACTIVE = 'Active' }
+- Conventional commits: `feat:`, `fix:`, `refactor:`, `docs:`, `test:`
+- Small, focused commits
 
-// ✅ Good
-export const Status = {
-  ACTIVE: 'Active',
-  INACTIVE: 'Inactive',
-} as const;
-export type Status = (typeof Status)[keyof typeof Status];
-```
+---
 
-### Imports
+## Boundaries
 
-Order: builtin → external → internal → parent/sibling → type
+### Always Do
 
-```typescript
-import { useEffect } from 'react';
+- Write tests first (TDD)
+- Run `pnpm lint` and `pnpm format:check` before committing
+- Run `pnpm test` before pushing
+- Write tests in `__tests__/` folders or `.test.ts` files
+- Use environment variables for secrets
+- Use Context7 MCP before installing or using any library to check latest docs
+- Use pnpm for all package operations
 
-import Image from 'next/image';
+### Ask First
 
-import { Button } from '@/shared/ui';
+- Database schema changes
+- Major refactoring across multiple files
+- Adding new dependencies
+- Modifying `doc/` documentation structure
+- Deleting any files
 
-import { useAuth } from '../hooks';
+### Never Do
 
-import type { User } from './types';
-```
+- Commit `.env` files or secrets
+- Modify `pnpm-lock.yaml` manually
+- Push directly to `main` branch
+- Delete or overwrite `doc/` files without confirmation
+- Skip tests for "quick fixes"
 
-### Images
+---
 
-Always use `next/image` for rendering images:
+## Success Metrics
 
-```typescript
-import Image from 'next/image';
+You are successful when:
 
-<Image src="/logo.png" alt="Logo" width={100} height={100} />
-```
+- All tests pass (80%+ coverage)
+- No security vulnerabilities
+- Code is readable and maintainable
+- User requirements are met
+- ESLint passes with no errors
+- Prettier formatting is consistent
 
-## Testing
+---
 
-- **Coverage target**: 80% minimum
-- **TDD**: Write tests before implementation
-- **Unit tests**: `*.test.tsx` files alongside components
-- **E2E tests**: `e2e/` directory
-
-```bash
-# Before commit, all must pass:
-pnpm lint && pnpm typecheck && pnpm test
-```
-
-## Git Workflow (GitFlow)
-
-### Branches
-
-- `main` — Production releases
-- `develop` — Integration branch
-- `feature/*` — New features (from develop)
-- `release/*` — Release preparation
-- `hotfix/*` — Production fixes
-
-### Commit Convention (Conventional Commits)
-
-```
-<type>(<scope>): <description>
-
-feat:     New feature
-fix:      Bug fix
-docs:     Documentation
-style:    Formatting (no code change)
-refactor: Code refactoring
-test:     Adding tests
-chore:    Maintenance
-```
-
-### Pre-commit Checklist
-
-1. `pnpm lint:fix` — Fix lint errors
-2. `pnpm format` — Format code
-3. `pnpm typecheck` — Type check
-4. `pnpm test` — Run tests
-5. All must pass before commit
-
-## External APIs
-
-- **Spotify API**: Music data integration
-- **Kakao SDK**: Client-side social features (`NEXT_PUBLIC_KAKAO_APP_KEY`)
-- **Neon DB**: PostgreSQL database (`DATABASE_URL`)
-
-## Important Notes
-
-- **Use Context7 MCP** before installing or using any library to check latest docs
-- **Use pnpm** for all package operations
-- **Path alias**: `@/*` maps to `./src/*`
+**Philosophy**: Agent-first design, plan before action, test before code, security always.
