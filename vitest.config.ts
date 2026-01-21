@@ -17,9 +17,16 @@ export default defineConfig({
         'node_modules/**',
         '.next/**',
         'e2e/**',
+        'example/**',
         '**/*.config.{js,ts,mjs}',
         '**/vitest.setup.ts',
       ],
+      thresholds: {
+        statements: 80,
+        branches: 80,
+        functions: 80,
+        lines: 80,
+      },
     },
   },
   resolve: {

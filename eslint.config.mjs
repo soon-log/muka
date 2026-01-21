@@ -24,6 +24,7 @@ const eslintConfig = defineConfig([
     'node_modules/**',
     'coverage/**',
     'playwright-report/**',
+    'example/**',
     '*.config.mjs',
   ]),
 
@@ -68,6 +69,13 @@ const eslintConfig = defineConfig([
       '@typescript-eslint/no-misused-promises': 'error',
 
       // Code quality
+      'no-restricted-syntax': [
+        'error',
+        {
+          selector: 'TSEnumDeclaration',
+          message: 'Use `as const` pattern instead of enum',
+        },
+      ],
       'no-console': ['warn', { allow: ['warn', 'error'] }],
       'prefer-const': 'error',
       eqeqeq: ['error', 'always'],

@@ -23,3 +23,6 @@ yarn.lock
 # Playwright
 playwright-report
 test-results
+
+# Example
+example
