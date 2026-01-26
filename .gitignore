@@ -44,3 +44,133 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+# Purpose: Essential patterns for user projects
+# Version: 0.33.0
+*_secret.*
+.claude/local/
+secret-*.*
+build/
+private-key*
+*-secret.*
+# MoAI-ADK Package Distribution .gitignore
+*.db
+# Test Coverage
+.Spotlight-V100
+api-key-*
+*.sublime-workspace
+*.egg-info/
+[Dd]esktop.ini
+*-key.*
+*.key.*
+*.log
+*.pyc
+# Virtual Environments
+.claude/settings.local.json
+# Backups
+*-secret-key.*
+dist/
+*.pyd
+.claude/plans/
+*_backup_*/
+.env/
+.claude/skills/*/*/*secret*
+# Private keys (specific patterns to avoid false positives)
+.firebase/
+.venv/
+*-api-key.*
+*.sln
+coverage.json
+venv/
+*.pfx
+.claude/skills/*/secrets/
+*.egg
+.pytest_cache/
+# Claude Code Configuration
+# Mac
+Thumbs.db
+.LSOverride
+# Deployment & CI/CD
+*.temp
+.AppleDouble
+.ruff_cache/
+.claude/skills/*/*/*token*
+out/
+dist-ssr/
+*.pyo
+.uv_cache/
+*.sqlite3
+# Linux
+.turbo/
+env/
+# Updated: 2026-01-10
+htmlcov/
+*.backup/
+.moai-backups/
+.tscache/
+# Logs & Temporary Files
+.TemporaryItems
+*.jks
+*~
+.claude/skills/*/*/*key*
+*.backup
+# Environment files
+.vercel/
+*.tmp
+*.bak
+*.dbm
+*.secret.*
+.env.*
+*.rdb
+*.sqlite
+.Trashes
+.directory
+ehthumbs.db
+.mypy_cache/
+.aws/credentials
+node_modules/
+*-backup/
+.cursor/
+*_key.*
+*.swp
+*_secret=*
+# Cloud provider credentials
+# OS Files
+.fseventsd
+.coverage
+secret-key-*
+# Skill-specific credentials
+.aws/config
+# Certificate files
+.nuxt/
+*.suo
+# IDE & Editors
+.claude/settings.local.*.json
+# Node.js (for docs/Nextra)
+.idea/
+.claude/.env.local*
+# Secrets and Credentials (CRITICAL)
+.env
+*.p12
+# Python Cache & Bytecode
+*.njsproj
+# Windows
+# Build Artifacts & Distribution
+*.sw?
+.DocumentRevisions-V100
+# Build Tools & Frameworks
+*_token=*
+*.swo
+# ============================================
+.VolumeIcon.icns
+# ===========================================
+.next/
+.netlify/
+.#*
+.uv-cache/
+# FIXED: Issue #237 - Replaced overly broad *key* and *secret* patterns
+*.sublime-project
+__pycache__/
+# Credential patterns in environment files
+logs/
+.claude/skills/*/.env*
+.vscode/
