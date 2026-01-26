@@ -1,0 +1,9 @@
+project:
+  name: muka
+  description: ''
+  type: ''
+  locale: '{{LOCALE}}'
+  created_at: '2026-01-26T22:12:36.419089Z'
+  initialized: 'true'
+github:
+  profile_name: ''
