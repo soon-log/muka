@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Question {
+  id          Int      @id @default(autoincrement())
+  template    String   @db.VarChar(100)
+  description String?  @db.VarChar(255)
+  category    String   @db.VarChar(50)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  links Link[]
+
+  @@map("questions")
+}
+
+model Link {
+  id         Int      @id @default(autoincrement())
+  hash       String   @unique @db.VarChar(10)
+  questionId Int      @map("question_id")
+  used       Boolean  @default(false)
+  createdAt  DateTime @default(now()) @map("created_at")
+  expiresAt  DateTime @map("expires_at")
+
+  question Question @relation(fields: [questionId], references: [id])
+
+  @@index([hash])
+  @@index([expiresAt])
+  @@map("links")
+}
