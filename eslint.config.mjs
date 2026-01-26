@@ -26,6 +26,8 @@ const eslintConfig = defineConfig([
     'playwright-report/**',
     'example/**',
     '*.config.mjs',
+    '.claude/**',
+    '.moai/**',
   ]),
 
   // Project-specific rules
