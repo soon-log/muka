@@ -1,27 +1,27 @@
 ---
-name: "moai-workflow-ddd"
-description: "Domain-Driven Development workflow specialist using ANALYZE-PRESERVE-IMPROVE cycle for behavior-preserving code transformation"
+name: 'moai-workflow-ddd'
+description: 'Domain-Driven Development workflow specialist using ANALYZE-PRESERVE-IMPROVE cycle for behavior-preserving code transformation'
 version: 1.0.0
-category: "workflow"
+category: 'workflow'
 modularized: true
 user-invocable: false
 context: fork
 agent: manager-ddd
 tags:
   [
-    "workflow",
-    "refactoring",
-    "ddd",
-    "domain-driven",
-    "behavior-preservation",
-    "ast-grep",
-    "characterization-tests",
+    'workflow',
+    'refactoring',
+    'ddd',
+    'domain-driven',
+    'behavior-preservation',
+    'ast-grep',
+    'characterization-tests',
   ]
 related-skills:
-  ["moai-tool-ast-grep", "moai-workflow-testing", "moai-foundation-quality"]
+  ['moai-tool-ast-grep', 'moai-workflow-testing', 'moai-foundation-quality']
 updated: 2026-01-16
-status: "active"
-author: "MoAI-ADK Team"
+status: 'active'
+author: 'MoAI-ADK Team'
 allowed-tools:
   - Read
   - Write

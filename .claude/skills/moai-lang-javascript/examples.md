@@ -150,7 +150,10 @@ await app.register(routes, { prefix: '/api/v1' });
 app.setErrorHandler(errorHandler);
 
 // Health check
-app.get('/health', async () => ({ status: 'ok', timestamp: new Date().toISOString() }));
+app.get('/health', async () => ({
+  status: 'ok',
+  timestamp: new Date().toISOString(),
+}));
 
 // Start server
 const start = async () => {
@@ -175,7 +178,9 @@ import { z } from 'zod';
 import 'dotenv/config';
 
 const envSchema = z.object({
-  NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
+  NODE_ENV: z
+    .enum(['development', 'production', 'test'])
+    .default('development'),
   PORT: z.string().transform(Number).default('3000'),
   DATABASE_URL: z.string().url(),
   JWT_SECRET: z.string().min(32),
@@ -668,7 +673,10 @@ describe('UserService', () => {
       const userWithPassword = { ...mockUser, password: 'hashed_password123' };
       userRepository.findByEmail.mockResolvedValue(userWithPassword);
 
-      const result = await userService.authenticate('john@example.com', 'password123');
+      const result = await userService.authenticate(
+        'john@example.com',
+        'password123'
+      );
 
       expect(result).toEqual(userWithPassword);
     });
@@ -677,7 +685,10 @@ describe('UserService', () => {
       const userWithPassword = { ...mockUser, password: 'hashed_password123' };
       userRepository.findByEmail.mockResolvedValue(userWithPassword);
 
-      const result = await userService.authenticate('john@example.com', 'wrongpassword');
+      const result = await userService.authenticate(
+        'john@example.com',
+        'wrongpassword'
+      );
 
       expect(result).toBeNull();
     });
@@ -685,7 +696,10 @@ describe('UserService', () => {
     it('returns null on non-existent user', async () => {
       userRepository.findByEmail.mockResolvedValue(null);
 
-      const result = await userService.authenticate('unknown@example.com', 'password');
+      const result = await userService.authenticate(
+        'unknown@example.com',
+        'password'
+      );
 
       expect(result).toBeNull();
     });
@@ -803,7 +817,10 @@ app.use('/api/*', cors());
 app.use('/api/*', prettyJSON());
 
 // Cache static responses
-app.get('/api/health', cache({ cacheName: 'health', cacheControl: 'max-age=60' }));
+app.get(
+  '/api/health',
+  cache({ cacheName: 'health', cacheControl: 'max-age=60' })
+);
 
 // Health check
 app.get('/api/health', (c) => c.json({ status: 'ok', timestamp: Date.now() }));
@@ -819,7 +836,8 @@ const createPostSchema = z.object({
 });
 
 // Routes with validation
-app.post('/api/posts',
+app.post(
+  '/api/posts',
   jwt({ secret: Bun.env.JWT_SECRET }),
   zValidator('json', createPostSchema),
   async (c) => {
@@ -895,7 +913,10 @@ export default [
     },
     rules: {
       // Best practices
-      'no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+      'no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+      ],
       'no-console': ['warn', { allow: ['warn', 'error', 'info'] }],
       'prefer-const': 'error',
       'no-var': 'error',

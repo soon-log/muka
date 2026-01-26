@@ -1,16 +1,16 @@
 ---
-name: "moai-workflow-spec"
-description: "SPEC workflow orchestration with EARS format, requirement clarification, and Plan-Run-Sync integration for MoAI-ADK development methodology"
+name: 'moai-workflow-spec'
+description: 'SPEC workflow orchestration with EARS format, requirement clarification, and Plan-Run-Sync integration for MoAI-ADK development methodology'
 version: 1.2.0
-category: "workflow"
+category: 'workflow'
 modularized: true
 user-invocable: false
 context: fork
 agent: Plan
-tags: ["workflow", "spec", "ears", "requirements", "moai-adk", "planning"]
+tags: ['workflow', 'spec', 'ears', 'requirements', 'moai-adk', 'planning']
 updated: 2026-01-08
-status: "active"
-author: "MoAI-ADK Team"
+status: 'active'
+author: 'MoAI-ADK Team'
 
 # Progressive Disclosure Configuration
 progressive_disclosure:
@@ -22,17 +22,17 @@ progressive_disclosure:
 triggers:
   keywords:
     [
-      "SPEC",
-      "requirement",
-      "EARS",
-      "acceptance criteria",
-      "user story",
-      "planning",
-      "specification",
-      "requirements gathering",
+      'SPEC',
+      'requirement',
+      'EARS',
+      'acceptance criteria',
+      'user story',
+      'planning',
+      'specification',
+      'requirements gathering',
     ]
-  phases: ["plan"]
-  agents: ["manager-spec", "manager-strategy", "Plan"]
+  phases: ['plan']
+  agents: ['manager-spec', 'manager-strategy', 'Plan']
 
 allowed-tools:
   - Read

@@ -174,3 +174,5 @@ __pycache__/
 logs/
 .claude/skills/*/.env*
 .vscode/
+
+/src/generated/prisma

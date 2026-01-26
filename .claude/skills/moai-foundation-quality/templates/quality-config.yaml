@@ -12,43 +12,43 @@ quality_analysis:
   context7_integration: true
 
   # Quality thresholds
-  quality_threshold: 0.85              # Overall quality gate threshold
-  test_coverage_threshold: 0.85        # Minimum test coverage
-  security_threshold: 0.90             # Security compliance threshold
-  complexity_threshold: 10             # Maximum cyclomatic complexity
+  quality_threshold: 0.85 # Overall quality gate threshold
+  test_coverage_threshold: 0.85 # Minimum test coverage
+  security_threshold: 0.90 # Security compliance threshold
+  complexity_threshold: 10 # Maximum cyclomatic complexity
 
   # Analysis scope
-  languages: ["python", "typescript", "javascript"]
+  languages: ['python', 'typescript', 'javascript']
   focus_areas:
-    - "security"
-    - "performance"
-    - "maintainability"
-    - "testing"
-    - "documentation"
+    - 'security'
+    - 'performance'
+    - 'maintainability'
+    - 'testing'
+    - 'documentation'
 
   # File patterns
   include_patterns:
-    - "src/**/*.py"
-    - "src/**/*.js"
-    - "src/**/*.ts"
-    - "src/**/*.jsx"
-    - "src/**/*.tsx"
-    - "lib/**/*.py"
-    - "lib/**/*.js"
-    - "lib/**/*.ts"
+    - 'src/**/*.py'
+    - 'src/**/*.js'
+    - 'src/**/*.ts'
+    - 'src/**/*.jsx'
+    - 'src/**/*.tsx'
+    - 'lib/**/*.py'
+    - 'lib/**/*.js'
+    - 'lib/**/*.ts'
 
   exclude_patterns:
-    - "**/__pycache__/**"
-    - "**/node_modules/**"
-    - "**/dist/**"
-    - "**/build/**"
-    - "**/vendor/**"
-    - "**/*.test.js"
-    - "**/*.test.ts"
-    - "**/*.spec.js"
-    - "**/*.spec.ts"
-    - "**/coverage/**"
-    - "**/.pytest_cache/**"
+    - '**/__pycache__/**'
+    - '**/node_modules/**'
+    - '**/dist/**'
+    - '**/build/**'
+    - '**/vendor/**'
+    - '**/*.test.js'
+    - '**/*.test.ts'
+    - '**/*.spec.js'
+    - '**/*.spec.ts'
+    - '**/coverage/**'
+    - '**/.pytest_cache/**'
 
 # TRUST 5 Framework Configuration
 trust5_framework:
@@ -62,8 +62,8 @@ trust5_framework:
     trackable: 0.80
 
   testable:
-    coverage_types: ["line", "branch", "function"]
-    minimum_test_types: ["unit"]
+    coverage_types: ['line', 'branch', 'function']
+    minimum_test_types: ['unit']
     test_quality_threshold: 0.80
     flaky_test_threshold: 0.05
 
@@ -95,35 +95,35 @@ trust5_framework:
 # Proactive Analysis Configuration
 proactive_analysis:
   enabled: true
-  scan_frequency: "on_commit"  # on_commit, daily, weekly
+  scan_frequency: 'on_commit' # on_commit, daily, weekly
   auto_fix_safe_issues: true
-  severity_filter: "medium"    # low, medium, high, critical
+  severity_filter: 'medium' # low, medium, high, critical
 
   security_analysis:
     enabled: true
     owasp_categories:
-      - "A01: Broken Access Control"
-      - "A02: Cryptographic Failures"
-      - "A03: Injection"
-      - "A04: Insecure Design"
-      - "A05: Security Misconfiguration"
-      - "A06: Vulnerable Components"
-      - "A07: Authentication Failures"
+      - 'A01: Broken Access Control'
+      - 'A02: Cryptographic Failures'
+      - 'A03: Injection'
+      - 'A04: Insecure Design'
+      - 'A05: Security Misconfiguration'
+      - 'A06: Vulnerable Components'
+      - 'A07: Authentication Failures'
 
     custom_rules:
-      - "hardcoded_secrets"
-      - "sql_injection"
-      - "xss_vulnerabilities"
-      - "insecure_deserialization"
+      - 'hardcoded_secrets'
+      - 'sql_injection'
+      - 'xss_vulnerabilities'
+      - 'insecure_deserialization'
 
   performance_analysis:
     enabled: true
     analysis_types:
-      - "algorithm_complexity"
-      - "database_queries"
-      - "memory_usage"
-      - "concurrency_issues"
-      - "resource_leaks"
+      - 'algorithm_complexity'
+      - 'database_queries'
+      - 'memory_usage'
+      - 'concurrency_issues'
+      - 'resource_leaks'
 
     performance_thresholds:
       max_cyclomatic_complexity: 10
@@ -134,14 +134,14 @@ proactive_analysis:
   maintainability_analysis:
     enabled: true
     metrics:
-      - "code_duplication"
-      - "technical_debt"
-      - "code_churn"
-      - "coupling_analysis"
-      - "cohesion_analysis"
+      - 'code_duplication'
+      - 'technical_debt'
+      - 'code_churn'
+      - 'coupling_analysis'
+      - 'cohesion_analysis'
 
-    duplication_threshold: 0.03      # 3% duplication threshold
-    technical_debt_threshold: 8.0   # 8 hours per file threshold
+    duplication_threshold: 0.03 # 3% duplication threshold
+    technical_debt_threshold: 8.0 # 8 hours per file threshold
 
 # Best Practices Engine Configuration
 best_practices:
@@ -152,124 +152,124 @@ best_practices:
 
   language_rules:
     python:
-      style_guide: "pep8"
-      linter: "ruff"
-      formatter: "black"
-      type_checker: "mypy"
-      test_framework: "pytest"
+      style_guide: 'pep8'
+      linter: 'ruff'
+      formatter: 'black'
+      type_checker: 'mypy'
+      test_framework: 'pytest'
 
       naming_conventions:
-        variables: "snake_case"
-        functions: "snake_case"
-        classes: "PascalCase"
-        constants: "UPPER_CASE"
-        private_members: "_leading_underscore"
+        variables: 'snake_case'
+        functions: 'snake_case'
+        classes: 'PascalCase'
+        constants: 'UPPER_CASE'
+        private_members: '_leading_underscore'
 
-      docstring_style: "google"
+      docstring_style: 'google'
       type_hint_enforcement: true
       import_organization: true
 
     typescript:
-      style_guide: "google"
-      linter: "eslint"
-      formatter: "prettier"
-      type_checker: "tsc"
-      test_framework: "jest"
+      style_guide: 'google'
+      linter: 'eslint'
+      formatter: 'prettier'
+      type_checker: 'tsc'
+      test_framework: 'jest'
 
       naming_conventions:
-        variables: "camelCase"
-        functions: "camelCase"
-        classes: "PascalCase"
-        interfaces: "PascalCase"
-        types: "PascalCase"
-        constants: "UPPER_SNAKE_CASE"
+        variables: 'camelCase'
+        functions: 'camelCase'
+        classes: 'PascalCase'
+        interfaces: 'PascalCase'
+        types: 'PascalCase'
+        constants: 'UPPER_SNAKE_CASE'
 
       strict_mode: true
       no_implicit_any: true
       explicit_return_types: true
 
     javascript:
-      style_guide: "airbnb"
-      linter: "eslint"
-      formatter: "prettier"
-      test_framework: "jest"
+      style_guide: 'airbnb'
+      linter: 'eslint'
+      formatter: 'prettier'
+      test_framework: 'jest'
 
       naming_conventions:
-        variables: "camelCase"
-        functions: "camelCase"
-        classes: "PascalCase"
-        constants: "UPPER_SNAKE_CASE"
+        variables: 'camelCase'
+        functions: 'camelCase'
+        classes: 'PascalCase'
+        constants: 'UPPER_SNAKE_CASE'
 
       es6_plus_features: true
       async_await_enforcement: true
 
     go:
-      style_guide: "gofmt"
-      linter: "golangci-lint"
-      formatter: "gofmt"
-      test_framework: "go test"
+      style_guide: 'gofmt'
+      linter: 'golangci-lint'
+      formatter: 'gofmt'
+      test_framework: 'go test'
 
       naming_conventions:
-        variables: "camelCase"
-        functions: "camelCase"
-        types: "PascalCase"
-        interfaces: "PascalCase"
-        constants: "UPPER_SNAKE_CASE"
+        variables: 'camelCase'
+        functions: 'camelCase'
+        types: 'PascalCase'
+        interfaces: 'PascalCase'
+        constants: 'UPPER_SNAKE_CASE'
 
-      error_handling: "explicit_errors"
+      error_handling: 'explicit_errors'
       goroutine_analysis: true
 
   cross_language_consistency:
     enabled: true
     consistency_rules:
-      - "naming_patterns"
-      - "error_handling"
-      - "logging_patterns"
-      - "documentation_style"
+      - 'naming_patterns'
+      - 'error_handling'
+      - 'logging_patterns'
+      - 'documentation_style'
 
     consistency_threshold: 0.80
 
 # Context7 Integration Configuration
 context7:
   enabled: true
-  cache_ttl: 3600              # 1 hour cache
-  max_tokens: 5000             # Maximum tokens per request
-  request_timeout: 30          # Request timeout in seconds
+  cache_ttl: 3600 # 1 hour cache
+  max_tokens: 5000 # Maximum tokens per request
+  request_timeout: 30 # Request timeout in seconds
 
   library_mappings:
     # Frontend
-    "react": "/facebook/react"
-    "vue": "/vuejs/vue"
-    "angular": "/angular/angular"
-    "typescript": "/microsoft/TypeScript"
+    'react': '/facebook/react'
+    'vue': '/vuejs/vue'
+    'angular': '/angular/angular'
+    'typescript': '/microsoft/TypeScript'
 
     # Backend
-    "python": "/python/cpython"
-    "fastapi": "/tiangolo/fastapi"
-    "django": "/django/django"
-    "flask": "/pallets/flask"
-    "nodejs": "/nodejs/node"
-    "express": "/expressjs/express"
+    'python': '/python/cpython'
+    'fastapi': '/tiangolo/fastapi'
+    'django': '/django/django'
+    'flask': '/pallets/flask'
+    'nodejs': '/nodejs/node'
+    'express': '/expressjs/express'
 
     # Database
-    "postgresql": "/postgresql/postgres"
-    "mongodb": "/mongodb/mongo"
-    "redis": "/redis/redis"
+    'postgresql': '/postgresql/postgres'
+    'mongodb': '/mongodb/mongo'
+    'redis': '/redis/redis'
 
     # Security
-    "owasp": "/owasp/owasp-top-ten"
-    "bandit": "/PyCQA/bandit"
-    "snyk": "/snyk/snyk"
+    'owasp': '/owasp/owasp-top-ten'
+    'bandit': '/PyCQA/bandit'
+    'snyk': '/snyk/snyk'
 
 # Reporting Configuration
 reporting:
   enabled: true
   auto_generate: true
-  formats: ["html", "json", "sarif"]
-  output_directory: ".moai/reports/quality"
+  formats: ['html', 'json', 'sarif']
+  output_directory: '.moai/reports/quality'
 
   html_report:
-    theme: "enterprise"
+    theme: 'enterprise'
     include_charts: true
     interactive_elements: true
     executive_summary: true
@@ -299,20 +299,20 @@ metrics:
   benchmark_comparison: true
 
   core_metrics:
-    - "overall_quality_score"
-    - "test_coverage"
-    - "security_score"
-    - "maintainability_index"
-    - "technical_debt_hours"
-    - "code_duplication_percentage"
+    - 'overall_quality_score'
+    - 'test_coverage'
+    - 'security_score'
+    - 'maintainability_index'
+    - 'technical_debt_hours'
+    - 'code_duplication_percentage'
 
   detailed_metrics:
-    - "cyclomatic_complexity"
-    - "cognitive_complexity"
-    - "lines_of_code"
-    - "comment_ratio"
-    - "function_points"
-    - "security_vulnerabilities"
+    - 'cyclomatic_complexity'
+    - 'cognitive_complexity'
+    - 'lines_of_code'
+    - 'comment_ratio'
+    - 'function_points'
+    - 'security_vulnerabilities'
 
   thresholds:
     excellent:
@@ -341,7 +341,7 @@ integrations:
 
     github_actions:
       enabled: true
-      workflow_file: ".github/workflows/quality-gate.yml"
+      workflow_file: '.github/workflows/quality-gate.yml'
       auto_pr_comment: true
       status_checks: true
 
@@ -357,7 +357,7 @@ integrations:
   monitoring:
     enabled: true
     real_time_alerts: true
-    slack_webhook: ""
+    slack_webhook: ''
     email_notifications: []
 
     alert_thresholds:
@@ -369,29 +369,29 @@ integrations:
   # Issue Tracker Integration
   issue_tracking:
     enabled: false
-    platform: "github"  # github, jira, gitlab
+    platform: 'github' # github, jira, gitlab
     auto_create_tickets: true
-    ticket_template: "quality_violation"
+    ticket_template: 'quality_violation'
 
 # Custom Rules Configuration
 custom_rules:
   enabled: true
-  rules_directory: ".moai/quality-rules"
+  rules_directory: '.moai/quality-rules'
 
   enterprise_rules:
-    - name: "company_naming_conventions"
-      description: "Company-specific naming standards"
-      severity: "medium"
+    - name: 'company_naming_conventions'
+      description: 'Company-specific naming standards'
+      severity: 'medium'
       enabled: true
 
-    - name: "security_policy_compliance"
-      description: "Internal security policy requirements"
-      severity: "high"
+    - name: 'security_policy_compliance'
+      description: 'Internal security policy requirements'
+      severity: 'high'
       enabled: true
 
-    - name: "api_design_standards"
-      description: "REST API design guidelines"
-      severity: "medium"
+    - name: 'api_design_standards'
+      description: 'REST API design guidelines'
+      severity: 'medium'
       enabled: true
 
 # Environment-Specific Configuration
@@ -433,13 +433,13 @@ environments:
 performance:
   # Analysis performance
   max_concurrent_files: 50
-  timeout_per_file: 30          # seconds
-  memory_limit: "2GB"
+  timeout_per_file: 30 # seconds
+  memory_limit: '2GB'
 
   # Caching
   cache_enabled: true
-  cache_directory: ".moai/cache/quality"
-  cache_ttl: 3600               # 1 hour
+  cache_directory: '.moai/cache/quality'
+  cache_ttl: 3600 # 1 hour
 
   # Parallel processing
   parallel_analysis: true
@@ -457,19 +457,19 @@ security:
   tools:
     bandit:
       enabled: true
-      config_file: ".bandit"
+      config_file: '.bandit'
 
     safety:
       enabled: true
-      config_file: ".safety"
+      config_file: '.safety'
 
     snyk:
       enabled: false
-      api_token: ""
+      api_token: ''
 
     semgrep:
       enabled: false
-      config_file: ".semgrep.yml"
+      config_file: '.semgrep.yml'
 
 # Notification Configuration
 notifications:
@@ -478,19 +478,19 @@ notifications:
   channels:
     slack:
       enabled: false
-      webhook_url: ""
-      channel: "#quality-alerts"
+      webhook_url: ''
+      channel: '#quality-alerts'
 
     email:
       enabled: false
-      smtp_server: ""
+      smtp_server: ''
       smtp_port: 587
-      username: ""
+      username: ''
       recipients: []
 
     webhook:
       enabled: false
-      url: ""
+      url: ''
       headers: {}
 
   # Notification triggers
@@ -505,12 +505,12 @@ advanced:
   # Machine Learning
   ml_prediction:
     enabled: false
-    model_path: ""
-    training_data_path: ""
+    model_path: ''
+    training_data_path: ''
 
   # Custom Validators
   custom_validators:
-    directory: ".moai/validators"
+    directory: '.moai/validators'
     auto_load: true
 
   # Experimental Features

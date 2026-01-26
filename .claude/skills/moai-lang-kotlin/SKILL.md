@@ -1,8 +1,8 @@
 ---
-name: "moai-lang-kotlin"
-description: "Kotlin 2.0+ development specialist covering Ktor, coroutines, Compose Multiplatform, and Kotlin-idiomatic patterns. Use when building Kotlin server apps, Android apps, or multiplatform projects."
+name: 'moai-lang-kotlin'
+description: 'Kotlin 2.0+ development specialist covering Ktor, coroutines, Compose Multiplatform, and Kotlin-idiomatic patterns. Use when building Kotlin server apps, Android apps, or multiplatform projects.'
 version: 1.1.0
-category: "language"
+category: 'language'
 modularized: false
 
 # Progressive Disclosure Configuration
@@ -13,15 +13,26 @@ progressive_disclosure:
 
 # Trigger Conditions for Level 2 Loading
 triggers:
-  keywords: ["Kotlin", "Ktor", "coroutine", "Flow", "Compose", "Android", ".kt", ".kts", "build.gradle.kts"]
-  languages: ["kotlin"]
+  keywords:
+    [
+      'Kotlin',
+      'Ktor',
+      'coroutine',
+      'Flow',
+      'Compose',
+      'Android',
+      '.kt',
+      '.kts',
+      'build.gradle.kts',
+    ]
+  languages: ['kotlin']
 
 user-invocable: false
 tags: ['kotlin', 'ktor', 'coroutines', 'compose', 'android', 'multiplatform']
-context7-libraries: "/ktorio/ktor, /jetbrains/compose-multiplatform, /jetbrains/exposed"
-related-skills: "moai-lang-java, moai-lang-swift"
+context7-libraries: '/ktorio/ktor, /jetbrains/compose-multiplatform, /jetbrains/exposed'
+related-skills: 'moai-lang-java, moai-lang-swift'
 updated: 2026-01-11
-status: "active"
+status: 'active'
 ---
 
 ## Quick Reference (30 seconds)
@@ -100,7 +111,7 @@ Library mappings for latest documentation:
 - `/jetbrains/compose-multiplatform` - Compose Multiplatform
 - `/arrow-kt/arrow` - Arrow functional programming
 
-Usage: Call mcp__context7__get_library_docs with context7CompatibleLibraryID, topic string for specific areas, and tokens parameter for response size.
+Usage: Call mcp**context7**get_library_docs with context7CompatibleLibraryID, topic string for specific areas, and tokens parameter for response size.
 
 ---
 

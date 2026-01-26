@@ -1,16 +1,26 @@
 ---
-name: "moai-workflow-testing"
-description: "Comprehensive development workflow specialist combining DDD testing, debugging, performance optimization, code review, PR review, and quality assurance into unified development workflows"
+name: 'moai-workflow-testing'
+description: 'Comprehensive development workflow specialist combining DDD testing, debugging, performance optimization, code review, PR review, and quality assurance into unified development workflows'
 version: 2.4.0
-category: "workflow"
+category: 'workflow'
 modularized: true
 user-invocable: false
 context: fork
 agent: manager-ddd
-tags: ['workflow', 'ddd', 'testing', 'debugging', 'performance', 'quality', 'review', 'pr-review']
+tags:
+  [
+    'workflow',
+    'ddd',
+    'testing',
+    'debugging',
+    'performance',
+    'quality',
+    'review',
+    'pr-review',
+  ]
 updated: 2026-01-21
-status: "active"
-author: "MoAI-ADK Team"
+status: 'active'
+author: 'MoAI-ADK Team'
 
 # Progressive Disclosure Configuration
 progressive_disclosure:
@@ -20,9 +30,30 @@ progressive_disclosure:
 
 # Trigger Conditions for Level 2 Loading
 triggers:
-  keywords: ["DDD", "domain-driven development", "characterization tests", "behavior preservation", "debugging", "performance optimization", "code review", "PR review", "quality assurance", "testing", "CI/CD", "TRUST 5"]
-  phases: ["run", "sync"]
-  agents: ["manager-ddd", "expert-testing", "expert-debug", "expert-performance", "manager-quality"]
+  keywords:
+    [
+      'DDD',
+      'domain-driven development',
+      'characterization tests',
+      'behavior preservation',
+      'debugging',
+      'performance optimization',
+      'code review',
+      'PR review',
+      'quality assurance',
+      'testing',
+      'CI/CD',
+      'TRUST 5',
+    ]
+  phases: ['run', 'sync']
+  agents:
+    [
+      'manager-ddd',
+      'expert-testing',
+      'expert-debug',
+      'expert-performance',
+      'manager-quality',
+    ]
 
 allowed-tools:
   - Read

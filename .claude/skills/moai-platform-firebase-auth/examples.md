@@ -20,7 +20,7 @@ import {
   GoogleAuthProvider,
   FacebookAuthProvider,
   User,
-  UserCredential
+  UserCredential,
 } from 'firebase/auth';
 
 class AuthService {
@@ -29,15 +29,27 @@ class AuthService {
   private facebookProvider = new FacebookAuthProvider();
 
   // Email/Password Authentication
-  async signUp(email: string, password: string, displayName: string): Promise<User> {
-    const credential = await createUserWithEmailAndPassword(this.auth, email, password);
+  async signUp(
+    email: string,
+    password: string,
+    displayName: string
+  ): Promise<User> {
+    const credential = await createUserWithEmailAndPassword(
+      this.auth,
+      email,
+      password
+    );
     await updateProfile(credential.user, { displayName });
     await sendEmailVerification(credential.user);
     return credential.user;
   }
 
   async signIn(email: string, password: string): Promise<User> {
-    const credential = await signInWithEmailAndPassword(this.auth, email, password);
+    const credential = await signInWithEmailAndPassword(
+      this.auth,
+      email,
+      password
+    );
     return credential.user;
   }
 
@@ -284,16 +296,16 @@ export const listUsers = onCall(async (request) => {
   const listResult = await getAuth().listUsers(pageSize, pageToken);
 
   return {
-    users: listResult.users.map(user => ({
+    users: listResult.users.map((user) => ({
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
       disabled: user.disabled,
       emailVerified: user.emailVerified,
       customClaims: user.customClaims,
-      createdAt: user.metadata.creationTime
+      createdAt: user.metadata.creationTime,
     })),
-    pageToken: listResult.pageToken
+    pageToken: listResult.pageToken,
   };
 });
 
@@ -316,7 +328,7 @@ export const setUserRole = onCall(async (request) => {
 
   await getAuth().setCustomUserClaims(uid, {
     ...currentClaims,
-    role
+    role,
   });
 
   // Log the change
@@ -325,7 +337,7 @@ export const setUserRole = onCall(async (request) => {
     targetUid: uid,
     newRole: role,
     performedBy: request.auth.uid,
-    timestamp: FieldValue.serverTimestamp()
+    timestamp: FieldValue.serverTimestamp(),
   });
 
   return { success: true };
@@ -341,12 +353,14 @@ export const disableUser = onCall(async (request) => {
 
   await getAuth().updateUser(uid, { disabled });
 
-  await getFirestore().collection('auditLogs').add({
-    action: disabled ? 'DISABLE_USER' : 'ENABLE_USER',
-    targetUid: uid,
-    performedBy: request.auth.uid,
-    timestamp: FieldValue.serverTimestamp()
-  });
+  await getFirestore()
+    .collection('auditLogs')
+    .add({
+      action: disabled ? 'DISABLE_USER' : 'ENABLE_USER',
+      targetUid: uid,
+      performedBy: request.auth.uid,
+      timestamp: FieldValue.serverTimestamp(),
+    });
 
   return { success: true };
 });
@@ -470,7 +484,7 @@ import {
   linkWithCredential,
   EmailAuthProvider,
   GoogleAuthProvider,
-  linkWithPopup
+  linkWithPopup,
 } from 'firebase/auth';
 
 // Start as anonymous

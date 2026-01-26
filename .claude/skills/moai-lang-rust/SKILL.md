@@ -1,8 +1,8 @@
 ---
-name: "moai-lang-rust"
-description: "Rust 1.92+ development specialist covering Axum, Tokio, SQLx, and memory-safe systems programming. Use when building high-performance, memory-safe applications or WebAssembly."
+name: 'moai-lang-rust'
+description: 'Rust 1.92+ development specialist covering Axum, Tokio, SQLx, and memory-safe systems programming. Use when building high-performance, memory-safe applications or WebAssembly.'
 version: 1.2.0
-category: "language"
+category: 'language'
 modularized: false
 
 # Progressive Disclosure Configuration
@@ -13,13 +13,26 @@ progressive_disclosure:
 
 # Trigger Conditions for Level 2 Loading
 triggers:
-  keywords: ["Rust", "Axum", "Tokio", "SQLx", "serde", ".rs", "Cargo.toml", "async", "await", "lifetime", "trait"]
-  languages: ["rust"]
+  keywords:
+    [
+      'Rust',
+      'Axum',
+      'Tokio',
+      'SQLx',
+      'serde',
+      '.rs',
+      'Cargo.toml',
+      'async',
+      'await',
+      'lifetime',
+      'trait',
+    ]
+  languages: ['rust']
 
 user-invocable: false
-tags: ["language", "rust", "axum", "tokio", "sqlx", "serde", "wasm", "cargo"]
+tags: ['language', 'rust', 'axum', 'tokio', 'sqlx', 'serde', 'wasm', 'cargo']
 updated: 2026-01-11
-status: "active"
+status: 'active'
 allowed-tools:
   - Read
   - Grep

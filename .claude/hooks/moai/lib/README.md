@@ -24,12 +24,12 @@ lib/
 
 ## Exit Codes
 
-| Code | Meaning | Usage |
-|------|---------|-------|
-| 0 | Success | Normal completion |
-| 1 | Warning/Error | Non-critical error, logged |
-| 2 | Critical Error | Blocks operation |
-| 3 | Configuration Error | Invalid config |
+| Code | Meaning             | Usage                      |
+| ---- | ------------------- | -------------------------- |
+| 0    | Success             | Normal completion          |
+| 1    | Warning/Error       | Non-critical error, logged |
+| 2    | Critical Error      | Blocks operation           |
+| 3    | Configuration Error | Invalid config             |
 
 ## Exception Hierarchy
 
@@ -100,10 +100,13 @@ formatted = format_duration(125.5)  # "2.1m"
 ## Configuration Files
 
 ### Main Config
+
 Location: `.moai/config/config.yaml`
 
 ### Section Files
+
 Location: `.moai/config/sections/`
+
 - `user.yaml` - User name
 - `language.yaml` - Language preferences
 - `project.yaml` - Project metadata
@@ -150,10 +153,12 @@ Hooks are **always executed via `uv run`** by Claude Code, as configured in `set
 ```json
 {
   "hooks": {
-    "PostToolUse": [{
-      "type": "command",
-      "command": "uv run \"{{PROJECT_DIR}}/.claude/hooks/moai/post_tool__linter.py\""
-    }]
+    "PostToolUse": [
+      {
+        "type": "command",
+        "command": "uv run \"{{PROJECT_DIR}}/.claude/hooks/moai/post_tool__linter.py\""
+      }
+    ]
   }
 }
 ```

@@ -1,13 +1,22 @@
 ---
-name: "moai-foundation-core"
+name: 'moai-foundation-core'
 description: "MoAI-ADK's foundational principles - TRUST 5, SPEC-First DDD, delegation patterns, token optimization, progressive disclosure, modular architecture, agent catalog, command reference, and execution rules for building AI-powered development workflows"
 version: 2.5.0
-category: "foundation"
+category: 'foundation'
 modularized: true
 user-invocable: false
-tags: ['foundation', 'core', 'orchestration', 'agents', 'commands', 'trust-5', 'spec-first-ddd']
+tags:
+  [
+    'foundation',
+    'core',
+    'orchestration',
+    'agents',
+    'commands',
+    'trust-5',
+    'spec-first-ddd',
+  ]
 updated: 2026-01-21
-status: "active"
+status: 'active'
 allowed-tools:
   - Read
   - Grep
@@ -24,31 +33,31 @@ progressive_disclosure:
 # Trigger Conditions for Level 2 Loading
 triggers:
   keywords:
-    - "trust-5"
-    - "spec-first"
-    - "ddd"
-    - "delegation"
-    - "agent"
-    - "token"
-    - "progressive disclosure"
-    - "modular"
-    - "workflow"
-    - "orchestration"
-    - "quality gate"
-    - "spec"
-    - "ears format"
+    - 'trust-5'
+    - 'spec-first'
+    - 'ddd'
+    - 'delegation'
+    - 'agent'
+    - 'token'
+    - 'progressive disclosure'
+    - 'modular'
+    - 'workflow'
+    - 'orchestration'
+    - 'quality gate'
+    - 'spec'
+    - 'ears format'
   agents:
-    - "manager-spec"
-    - "manager-ddd"
-    - "manager-strategy"
-    - "manager-quality"
-    - "builder-agent"
-    - "builder-command"
-    - "builder-skill"
+    - 'manager-spec'
+    - 'manager-ddd'
+    - 'manager-strategy'
+    - 'manager-quality'
+    - 'builder-agent'
+    - 'builder-command'
+    - 'builder-skill'
   phases:
-    - "plan"
-    - "run"
-    - "sync"
+    - 'plan'
+    - 'run'
+    - 'sync'
 ---
 
 # MoAI Foundation Core

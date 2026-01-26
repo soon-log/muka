@@ -1,8 +1,8 @@
 ---
-name: "moai-lang-go"
-description: "Go 1.23+ development specialist covering Fiber, Gin, GORM, and concurrent programming patterns. Use when building high-performance microservices, CLI tools, or cloud-native applications."
+name: 'moai-lang-go'
+description: 'Go 1.23+ development specialist covering Fiber, Gin, GORM, and concurrent programming patterns. Use when building high-performance microservices, CLI tools, or cloud-native applications.'
 version: 1.1.0
-category: "language"
+category: 'language'
 modularized: false
 
 # Progressive Disclosure Configuration
@@ -13,15 +13,28 @@ progressive_disclosure:
 
 # Trigger Conditions for Level 2 Loading
 triggers:
-  keywords: ["Go", "Golang", "Fiber", "Gin", "GORM", "Echo", "Chi", ".go", "go.mod", "goroutine", "channel"]
-  languages: ["go", "golang"]
+  keywords:
+    [
+      'Go',
+      'Golang',
+      'Fiber',
+      'Gin',
+      'GORM',
+      'Echo',
+      'Chi',
+      '.go',
+      'go.mod',
+      'goroutine',
+      'channel',
+    ]
+  languages: ['go', 'golang']
 
 user-invocable: false
 tags: ['go', 'golang', 'fiber', 'gin', 'concurrency', 'microservices']
 context7-libraries: ['/gofiber/fiber', '/gin-gonic/gin', '/go-gorm/gorm']
 related-skills: ['moai-lang-rust', 'moai-domain-backend']
 updated: 2026-01-11
-status: "active"
+status: 'active'
 ---
 
 ## Quick Reference (30 seconds)

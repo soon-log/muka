@@ -211,7 +211,7 @@ Explore 에이전트 또는 직접 탐색 도구(Grep, Glob, Read)를 사용할 
 
 **원칙 3: 파일 패턴 구체성**
 
-와일드카드 대신 구체적인 Glob 패턴을 사용합니다. 예를 들어, src/moai_adk/core/*.py와 같이 특정 디렉터리의 Python 파일만 지정하면 스캔 파일 수를 50-80% 감소시킬 수 있습니다.
+와일드카드 대신 구체적인 Glob 패턴을 사용합니다. 예를 들어, src/moai_adk/core/\*.py와 같이 특정 디렉터리의 Python 파일만 지정하면 스캔 파일 수를 50-80% 감소시킬 수 있습니다.
 
 **원칙 4: 병렬 처리**
 
@@ -310,43 +310,55 @@ MoAI-ADK는 자동화된 코드 품질 검증을 위한 LSP 기반 품질 게이
 - 로깅: 상태 변경, 회귀 감지, 완료 마커 추적
 
 **구성:** # Quality & Constitution Settings
+
 # TRUST 5 Framework: Tested, Readable, Unified, Secured, Trackable
 
 constitution:
-  # Development methodology - DDD only
-  development_mode: ddd
-  # ddd: Domain-Driven Development (ANALYZE-PRESERVE-IMPROVE)
-  # - Refactoring with behavior preservation
-  # - Characterization tests for legacy code
-  # - Incremental improvements
 
-  # TRUST 5 quality framework enforcement
-  enforce_quality: true # Enable TRUST 5 quality principles
-  test_coverage_target: 85 # Target: 85% coverage for AI-assisted development
+# Development methodology - DDD only
 
-  # DDD settings (Domain-Driven Development)
-  ddd_settings:
-    require_existing_tests: true # Require existing tests before refactoring
-    characterization_tests: true # Create characterization tests for uncovered code
-    behavior_snapshots: true # Use snapshot testing for complex outputs
-    max_transformation_size: small # small | medium | large - controls change granularity
+development_mode: ddd
 
-  # Coverage exemptions (discouraged - use sparingly with justification)
-  coverage_exemptions:
-    enabled: false # Allow coverage exemptions (default: false)
-    require_justification: true # Require justification for exemptions
-    max_exempt_percentage: 5 # Maximum 5% of codebase can be exempted
+# ddd: Domain-Driven Development (ANALYZE-PRESERVE-IMPROVE)
 
-  # Test quality criteria (Quality > Numbers principle)
-  test_quality:
-    specification_based: true # Tests must verify specified behavior
-    meaningful_assertions: true # Assertions must have clear purpose
-    avoid_implementation_coupling: true # Tests should not couple to implementation details
-    mutation_testing_enabled: false # Optional: mutation testing for effectiveness validation
+# - Refactoring with behavior preservation
 
-  # LSP quality gates (Ralph-style autonomous workflow)
-  lsp_quality_gates:
-    enabled: true # Enable LSP-based quality gates
+# - Characterization tests for legacy code
+
+# - Incremental improvements
+
+# TRUST 5 quality framework enforcement
+
+enforce_quality: true # Enable TRUST 5 quality principles
+test_coverage_target: 85 # Target: 85% coverage for AI-assisted development
+
+# DDD settings (Domain-Driven Development)
+
+ddd_settings:
+require_existing_tests: true # Require existing tests before refactoring
+characterization_tests: true # Create characterization tests for uncovered code
+behavior_snapshots: true # Use snapshot testing for complex outputs
+max_transformation_size: small # small | medium | large - controls change granularity
+
+# Coverage exemptions (discouraged - use sparingly with justification)
+
+coverage_exemptions:
+enabled: false # Allow coverage exemptions (default: false)
+require_justification: true # Require justification for exemptions
+max_exempt_percentage: 5 # Maximum 5% of codebase can be exempted
+
+# Test quality criteria (Quality > Numbers principle)
+
+test_quality:
+specification_based: true # Tests must verify specified behavior
+meaningful_assertions: true # Assertions must have clear purpose
+avoid_implementation_coupling: true # Tests should not couple to implementation details
+mutation_testing_enabled: false # Optional: mutation testing for effectiveness validation
+
+# LSP quality gates (Ralph-style autonomous workflow)
+
+lsp_quality_gates:
+enabled: true # Enable LSP-based quality gates
 
     # Phase-specific LSP thresholds
     plan:
@@ -367,19 +379,17 @@ constitution:
     cache_ttl_seconds: 5 # Cache LSP diagnostics for 5 seconds
     timeout_seconds: 3 # Timeout for LSP diagnostic fetch
 
-  # Simplicity principles (separate from TRUST 5)
-  principles:
-    simplicity:
-      max_parallel_tasks: 10 # Maximum parallel operations for focus (NOT concurrent projects)
+# Simplicity principles (separate from TRUST 5)
 
-  # LSP integration with TRUST 5
-  lsp_integration:
-    # LSP as quality indicator for each TRUST 5 pillar
-    truct5_integration:
-      tested:
-        - unit_tests_pass
-        - lsp_type_errors == 0 # Type safety verified
-        - lsp_errors == 0 # No diagnostic errors
+principles:
+simplicity:
+max_parallel_tasks: 10 # Maximum parallel operations for focus (NOT concurrent projects)
+
+# LSP integration with TRUST 5
+
+lsp_integration: # LSP as quality indicator for each TRUST 5 pillar
+truct5_integration:
+tested: - unit_tests_pass - lsp_type_errors == 0 # Type safety verified - lsp_errors == 0 # No diagnostic errors
 
       readable:
         - naming_conventions_followed
@@ -411,34 +421,37 @@ constitution:
       type_error_increase_threshold: 0 # Type error regressions not allowed
 
 report_generation:
-  enabled: true # Enable report generation
-  auto_create: false # Auto-create full reports (false = minimal)
-  warn_user: true # Ask before generating reports
-  user_choice: Minimal # Default: Minimal, Full, None
+enabled: true # Enable report generation
+auto_create: false # Auto-create full reports (false = minimal)
+warn_user: true # Ask before generating reports
+user_choice: Minimal # Default: Minimal, Full, None
 
 # LSP Diagnostic State Tracking
+
 lsp_state_tracking:
-  # Track LSP state changes throughout workflow
-  enabled: true
 
-  # State capture points
-  capture_points:
-    - phase_start # Capture at start of each workflow phase
-    - post_transformation # Capture after each code transformation
-    - pre_sync # Capture before sync phase
+# Track LSP state changes throughout workflow
 
-  # State comparison
-  comparison:
-    baseline: phase_start # Use phase start as baseline
-    regression_threshold: 0 # Any increase in errors is regression
+enabled: true
 
-  # Logging and observability
-  logging:
-    log_lsp_state_changes: true
-    log_regression_detection: true
-    log_completion_markers: true
-    include_lsp_in_reports: true
- (lsp_quality_gates, lsp_state_tracking)
+# State capture points
+
+capture_points: - phase_start # Capture at start of each workflow phase - post_transformation # Capture after each code transformation - pre_sync # Capture before sync phase
+
+# State comparison
+
+comparison:
+baseline: phase_start # Use phase start as baseline
+regression_threshold: 0 # Any increase in errors is regression
+
+# Logging and observability
+
+logging:
+log_lsp_state_changes: true
+log_regression_detection: true
+log_completion_markers: true
+include_lsp_in_reports: true
+(lsp_quality_gates, lsp_state_tracking)
 
 **구현:** .claude/hooks/moai/quality_gate_with_lsp.py (289줄, Ralph 스타일 자율 워크플로우)
 
@@ -555,12 +568,14 @@ agentId를 사용하여 중단된 에이전트 작업을 재개할 수 있습니
 sequential_thinking 도구는 다음 매개변수를 받습니다:
 
 필수 매개변수:
+
 - thought (string): 현재 생각 단계 내용
 - nextThoughtNeeded (boolean): 다음 생각 단계가 필요한지 여부
 - thoughtNumber (integer): 현재 생각 번호 (1부터 시작)
 - totalThoughts (integer): 분석에 필요한 추정 총 생각 수
 
 선택적 매개변수:
+
 - isRevision (boolean): 이전 생각을 수정하는지 여부 (기본값: false)
 - revisesThought (integer): 재고 대상인 생각 번호 (isRevision: true와 함께 사용)
 - branchFromThought (integer): 대체 추론 경로를 위한 분기 지점 생각 번호
@@ -582,6 +597,7 @@ Sequential Thinking MCP 도구는 다음과 같은 구조화된 추론을 제공
 심층 분석이 필요한 복잡한 결정에 직면하면 Sequential Thinking MCP 도구를 사용합니다:
 
 1단계: 초기 호출
+
 ```
 thought: "문제 분석: [문제 설명]"
 nextThoughtNeeded: true
@@ -590,7 +606,8 @@ totalThoughts: 5
 ```
 
 2단계: 분석 계속
-```
+
+````
 thought: "분해: [하위 문제 1]"
 nextThoughtNeeded: true
 thoughtNumber: 2
@@ -603,10 +620,11 @@ totalThoughts: 5
 thoughtNumber: 3
 totalThoughts: 5
 nextThoughtNeeded: true
-```
+````
 
 4단계: 최종 결론
-```
+
+````
 tho```
 thought: "생각 2 수정: [수정된 분석]"
 isRevision: true
@@ -632,11 +650,13 @@ UltraThink 모드는 Sequential Thinking MCP를 자동으로 적용하여 사용
 
 사용자는 모든 요청에 `--ultrathink` 플래그를 추가하여 UltraThink 모드를 활성화할 수 있습니다:
 
-```
+````
+
 User: "인증 시스템 구현 --ultrathink"
 User: "/moai:alfred 코드베이스 리팩토링 --ultrathink"
 User: "마이크로서비스 아키텍처 설계 --ultrathink"
-```
+
+````
 
 ### UltraThink 프로세스
 
@@ -664,7 +684,8 @@ User: "마이크로서비스 아키텍처 설계 --ultrathink"
 `--ultrathink` 요청을 처리할 때 다음 파라미터 패턴을 사용합니다:
 
 **초기 분석 호출:**
-```
+````
+
 thought: "사용자 요청 분석: '[요청]'
 핵심 목표: [주요 목표 추출]
 복잡도: [단순|보통|복잡]
@@ -673,11 +694,14 @@ thought: "사용자 요청 분석: '[요청]'
 nextThoughtNeeded: true
 thoughtNumber: 1
 totalThoughts: [복잡도에 따라 5-15]
+
 ```
 
 **분해 호출:**
 ```
+
 thought: "하위 작업으로 분해:
+
 1. [하위 작업 1] → 에이전트: [에이전트 유형]
 2. [하위 작업 2] → 에이전트: [에이전트 유형]
 3. [하위 작업 3] → 에이전트: [에이전트 유형]
@@ -687,12 +711,15 @@ thought: "하위 작업으로 분해:
 nextThoughtNeeded: true
 thoughtNumber: 2
 totalThoughts: [추정]
+
 ```
 
 **전략 선택 호출:**
 ```
+
 thought: "실행 전략 선택:
-```
+
+````
 thought: "사용자 요청 분석: '[요청]'
 핵심 목표: [주요 목표 추출]
 복잡도: [단순|보통|복잡]
@@ -702,7 +729,8 @@ nextThoughtNeeded: true
 thoughtNumber: 1
 totalThoughts: [복잡도에 따라 5-15]
 ```출:**
-```
+````
+
 thought: "최종 실행 계획 확정:
 1단계: [에이전트별 작업]
 2단계: [에이전트별 작업]
@@ -712,7 +740,8 @@ thought: "최종 실행 계획 확정:
 nextThoughtNeeded: false
 thoughtNumber: [최종]
 totalThoughts: [추정]
-```
+
+````
 
 ### UltraT```
 thought: "하위 작업으로 분해:
@@ -727,11 +756,12 @@ thoughtNumber: 2
 totalThoughts: [추정]
 ```ink 세션 예시
 
-```
+````
+
 User: "OAuth, JWT 갱신, 세션 관리로 사용자 인증 추가 --ultrathink"
 
-Alfred Sequential Thinking:
----
+## Alfred Sequential Thinking:
+
 생각 1: "인증 요구사항 분석...
 핵심: 전체 인증 시스템 구현
 구성요소: OAuth 통합, JWT 토큰, 갱신 로직, 세션
@@ -739,14 +769,16 @@ Alfred Sequential Thinking:
 
 생각 2: "구성요소 ```
 thought: "실행 전략 선택:
+
 - 주요 에이전트: [에이전트 목록]
 - 병렬 그룹: [그룹 1: [에이전트], 그룹 2: [에이전트]]
 - 순차 종속성: [종속성]
 - 위험 완화: [잠재적 문제 및 해결책]"
-nextThoughtNeeded: true
-thoughtNumber: 3
-totalThoughts: [추정]
-```3: "실행 전략:
+  nextThoughtNeeded: true
+  thoughtNumber: 3
+  totalThoughts: [추정]
+
+````3: "실행 전략:
 병렬 그룹 1: OAuth + JWT 스키마 (종속성 없음)
 순차 체인: OAuth → JWT → 갱신 → 세션
 테스트: 구현 완료 후"
@@ -768,12 +800,14 @@ thought: "최종 실행 계획 확정:
 nextThoughtNeeded: false
 thoughtNumber: [최종]
 totalThoughts: [추정]
-```
+````
+
 - 종속성이 있는 복잡한 리팩토링
 - 분석이 필요한 성능 최적화
 - 보안 민감 구현
 
 불요한 경우:
+
 - 단순 버그 수정
 - 단일 라인 변경
 - 문서 업데이트
@@ -792,14 +826,15 @@ MoAI-ADK는 효율적인 스킬 로딩을 위한 3단계 점진적 공개 시스
 레벨 1은 메타데이터만 로드하며 각 스킬당 약 100 토큰을 소비합니다. 에이전트 초기화 시 로드되며 트리거가 포함된 YAML frontmatter를 포함합니다. 에이전트 frontmatter에 나열된 스킬은 항상 로드됩```
 User: "OAuth, JWT 갱신, 세션 관리로 사용자 인증 추가 --ultrathink"
 
-Alfred Sequential Thinking:
----
+## Alfred Sequential Thinking:
+
 생각 1: "인증 요구사항 분석...
 핵심: 전체 인증 시스템 구현
 구성요소: OAuth 통합, JWT 토큰, 갱신 로직, 세션
 복잡도: 높음 (3개 이상 구성요소, 보안 고려사항)"
 
 생각 2: "구성요소 분해:
+
 1. OAuth 제공자 통합 → expert-backend
 2. JWT 토큰 생성/검증 → expert-security
 3. 갱신 토큰 로테이션 → expert-backend
@@ -813,6 +848,7 @@ Alfred Sequential Thinking:
 테스트: 구현 완료 후"
 
 생각 4: "보안 고려사항:
+
 - OAuth 상태에 대한 CSRF 보호
 - JWT 시크릿 관리
 - 갱신 토큰 로테이션 주기
@@ -820,9 +856,11 @@ Alfred Sequential Thinking:
 
 생각 5: "최종 계획 완료.
 OAuth 설정을 위해 expert-backend로 실행 시작..."
+
 ---
 
 [이후 에이전트 위임 진행]
+
 ```스킬과 단계를 기반으로 토큰 예산을 추정합니다.
 
 ### 혜택
@@ -915,8 +953,10 @@ Memory MCP는 워크플로우 실행 중 에이전트 간 컨텍스트 공유를
 
 **핸드오프 키 스키마:**
 ```
-handoff_{from_agent}_{to_agent}_{spec_id}
-context_{spec_id}_{category}
+
+handoff*{from_agent}*{to*agent}*{spec*id}
+context*{spec*id}*{category}
+
 ```
 
 **카테고리:** `requirements`, `architecture`, `api`, `database`, `decisions`, `progress`
@@ -943,6 +983,10 @@ Language: Korean (한국어)
 
 플러그인, 샌드박싱, 헤드리스 모드, 버전 관리에 대한 자세한 패턴은 Skill("moai-foundation-claude")을 참조하세요.
 ```
-handoff_{from_agent}_{to_agent}_{spec_id}
-context_{spec_id}_{category}
+
+handoff*{from_agent}*{to*agent}*{spec*id}
+context*{spec*id}*{category}
+
+```
+
 ```

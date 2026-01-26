@@ -1,8 +1,8 @@
 ---
-name: "moai-lang-swift"
-description: "Swift 6+ development specialist covering SwiftUI, Combine, Swift Concurrency, and iOS patterns. Use when building iOS apps, macOS apps, or Apple platform applications."
+name: 'moai-lang-swift'
+description: 'Swift 6+ development specialist covering SwiftUI, Combine, Swift Concurrency, and iOS patterns. Use when building iOS apps, macOS apps, or Apple platform applications.'
 version: 2.1.0
-category: "language"
+category: 'language'
 modularized: true
 
 # Progressive Disclosure Configuration
@@ -13,8 +13,21 @@ progressive_disclosure:
 
 # Trigger Conditions for Level 2 Loading
 triggers:
-  keywords: ["Swift", "SwiftUI", "Combine", "iOS", "macOS", "async", "await", "Actor", "@Observable", ".swift", "Xcode"]
-  languages: ["swift"]
+  keywords:
+    [
+      'Swift',
+      'SwiftUI',
+      'Combine',
+      'iOS',
+      'macOS',
+      'async',
+      'await',
+      'Actor',
+      '@Observable',
+      '.swift',
+      'Xcode',
+    ]
+  languages: ['swift']
 
 user-invocable: false
 tags: ['swift', 'swiftui', 'ios', 'macos', 'combine', 'concurrency']
@@ -27,7 +40,7 @@ allowed-tools:
 context7-libraries: ['/apple/swift', '/apple/swift-evolution']
 related-skills: ['moai-lang-kotlin', 'moai-lang-flutter']
 updated: 2026-01-11
-status: "active"
+status: 'active'
 ---
 
 # Swift 6+ Development Specialist

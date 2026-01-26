@@ -240,9 +240,9 @@ ralph:
     timeout_seconds: 30
     graceful_degradation: true
     servers:
-      python: "pyright"
-      typescript: "tsserver"
-      go: "gopls"
+      python: 'pyright'
+      typescript: 'tsserver'
+      go: 'gopls'
 
   ast_grep:
     enabled: true
@@ -265,10 +265,10 @@ ralph:
   hooks:
     post_tool_lsp:
       enabled: true
-      severity_threshold: "error"
+      severity_threshold: 'error'
       ignore_patterns:
-        - "*.test.py"
-        - "tests/**/*"
+        - '*.test.py'
+        - 'tests/**/*'
     stop_loop_controller:
       enabled: true
       verbose: true
@@ -321,10 +321,10 @@ ralph:
   lsp:
     auto_start: true
     servers:
-      python: "pyright"
+      python: 'pyright'
     settings:
       pyright:
-        typeCheckingMode: "strict"
+        typeCheckingMode: 'strict'
         useLibraryCodeForTypes: true
 
   ast_grep:
@@ -347,8 +347,8 @@ ralph:
   lsp:
     auto_start: true
     servers:
-      typescript: "tsserver"
-      javascript: "tsserver"
+      typescript: 'tsserver'
+      javascript: 'tsserver'
     settings:
       typescript:
         strict: true
@@ -370,10 +370,10 @@ ralph:
   lsp:
     auto_start: true
     servers:
-      python: "pyright"
-      typescript: "tsserver"
-      go: "gopls"
-      rust: "rust-analyzer"
+      python: 'pyright'
+      typescript: 'tsserver'
+      go: 'gopls'
+      rust: 'rust-analyzer'
 
   ast_grep:
     enabled: true
@@ -630,7 +630,7 @@ rule:
       kind: binary_expression
       has:
         kind: string
-message: "Potential SQL injection vulnerability"
+message: 'Potential SQL injection vulnerability'
 severity: error
 ```
 
@@ -708,8 +708,8 @@ rule:
     - pattern: PASSWORD = "$PWD"
   where:
     KEY:
-      regex: "^[A-Za-z0-9]{20,}$"
-message: "Hardcoded secret detected"
+      regex: '^[A-Za-z0-9]{20,}$'
+message: 'Hardcoded secret detected'
 severity: error
 ```
 
@@ -755,7 +755,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.13"
+          python-version: '3.13'
 
       - name: Install MoAI-ADK
         run: |
@@ -768,7 +768,7 @@ jobs:
             --allowedTools "Read,Write,Edit,Bash" \
             --output-format json
         env:
-          MOAI_LOOP_ACTIVE: "true"
+          MOAI_LOOP_ACTIVE: 'true'
           CLAUDE_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
 
       - name: Check Results
@@ -931,11 +931,11 @@ ralph:
     timeout_seconds: 30
     graceful_degradation: true
     servers:
-      python: "pyright"
-      typescript: "tsserver"
+      python: 'pyright'
+      typescript: 'tsserver'
     settings:
       pyright:
-        typeCheckingMode: "strict"
+        typeCheckingMode: 'strict'
 
   ast_grep:
     enabled: true
@@ -958,7 +958,7 @@ ralph:
   hooks:
     post_tool_lsp:
       enabled: true
-      severity_threshold: "error"
+      severity_threshold: 'error'
     stop_loop_controller:
       enabled: true
       verbose: true

@@ -1299,9 +1299,7 @@
   ],
   "navigation_flow": {
     "mode_specific_order": {
-      "INITIALIZATION": [
-        "tab_0_initialization"
-      ],
+      "INITIALIZATION": ["tab_0_initialization"],
       "SETTINGS": [
         "tab_1_user_language",
         "tab_2_project_info",
@@ -1335,7 +1333,12 @@
             "description": "Project type must be one of allowed values",
             "field": "project.type",
             "validation": "enum",
-            "allowed_values": ["web_browser_app", "mobile_app", "cli_tool", "backend_api"]
+            "allowed_values": [
+              "web_browser_app",
+              "mobile_app",
+              "cli_tool",
+              "backend_api"
+            ]
           },
           {
             "name": "validate_project_description",

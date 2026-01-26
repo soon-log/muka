@@ -16,6 +16,7 @@ https://github.com/vercel-labs/web-interface-guidelines
 ### Usage Patterns
 
 Use these guidelines when:
+
 - Reviewing UI code for compliance issues
 - Implementing new components or pages
 - Conducting accessibility audits
@@ -35,6 +36,7 @@ Use these guidelines when:
 - Add `scroll-margin-top` on heading anchors for proper scroll position
 
 Example:
+
 ```tsx
 export default function Layout() {
   return (
@@ -50,13 +52,14 @@ export default function Layout() {
         <Footer />
       </body>
     </html>
-  )
+  );
 }
 ```
 
 ### Semantic HTML
 
 Use appropriate semantic elements over generic divs:
+
 - `<nav>` for navigation menus
 - `<main>` for primary content
 - `<article>` for self-contained content
@@ -76,6 +79,7 @@ Use appropriate semantic elements over generic divs:
 - Group focus with `:focus-within` for compound controls
 
 Example:
+
 ```tsx
 // Correct focus states
 <button className="focus-visible:ring-2 focus-visible:ring-blue-500">
@@ -99,6 +103,7 @@ Example:
 - Ensure `role` is used only when necessary (prefer semantic HTML)
 
 Example:
+
 ```tsx
 // Icon button with aria-label
 <button aria-label="Close dialog">
@@ -139,6 +144,7 @@ Example:
 - Disable spellcheck on emails, codes, usernames (`spellCheck={false}`)
 
 Example:
+
 ```tsx
 <form>
   <label htmlFor="email">Email</label>
@@ -161,6 +167,7 @@ Example:
 - Use proper grouping with `<fieldset>` and `<legend>`
 
 Example:
+
 ```tsx
 // Correct: label wraps control for single hit target
 <label className="flex items-center gap-2 cursor-pointer">
@@ -191,30 +198,33 @@ Example:
 - Warn before navigation with unsaved changes
 
 Example:
+
 ```tsx
 function ContactForm() {
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [errors, setErrors] = useState<Record<string, string>>({})
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault()
-    const newErrors = validate(formData)
-    setErrors(newErrors)
+    e.preventDefault();
+    const newErrors = validate(formData);
+    setErrors(newErrors);
 
     if (Object.keys(newErrors).length > 0) {
       // Focus first error
-      const firstErrorField = document.getElementById(Object.keys(newErrors)[0])
-      firstErrorField?.focus()
-      return
+      const firstErrorField = document.getElementById(
+        Object.keys(newErrors)[0]
+      );
+      firstErrorField?.focus();
+      return;
     }
 
-    setIsSubmitting(true)
+    setIsSubmitting(true);
     try {
-      await submitForm(formData)
+      await submitForm(formData);
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -237,7 +247,7 @@ function ContactForm() {
         {isSubmitting ? <Spinner /> : 'Submit'}
       </button>
     </form>
-  )
+  );
 }
 ```
 
@@ -255,6 +265,7 @@ function ContactForm() {
 - Animations interruptible—respond to user input mid-animation
 
 Example:
+
 ```tsx
 // Correct: explicit properties with reduced-motion support
 const buttonVariants = cva({
@@ -297,6 +308,7 @@ function AnimatedButton() {
 - Use `text-wrap: balance` or `text-wrap: pretty` on headings (prevents widows)
 
 Example:
+
 ```tsx
 function Typography() {
   return (
@@ -306,12 +318,10 @@ function Typography() {
       </h1>
       <p>Loading…</p>
       <table>
-        <td className="font-variant-numeric: tabular-nums">
-          1,234,567
-        </td>
+        <td className="font-variant-numeric: tabular-nums">1,234,567</td>
       </table>
     </div>
-  )
+  );
 }
 ```
 
@@ -327,6 +337,7 @@ function Typography() {
 - User-generated content: anticipate short, average, and very long inputs
 
 Example:
+
 ```tsx
 // Text truncation in flex container
 <div className="flex min-w-0">
@@ -358,9 +369,10 @@ function PostList({ posts }: { posts: Post[] }) {
 - Above-fold critical images: `priority` or `fetchpriority="high"`
 
 Example:
+
 ```tsx
 // Next.js Image component
-import Image from 'next/image'
+import Image from 'next/image';
 
 // Above-fold: priority
 function Hero() {
@@ -372,7 +384,7 @@ function Hero() {
       height={600}
       priority
     />
-  )
+  );
 }
 
 // Below-fold: lazy loading
@@ -385,7 +397,7 @@ function Gallery() {
       height={600}
       loading="lazy"
     />
-  )
+  );
 }
 ```
 
@@ -403,18 +415,19 @@ function Gallery() {
 - Critical fonts: `<link rel="preload">` with `font-display: swap`
 
 Example:
+
 ```tsx
 // Virtual list for large datasets
-import { useVirtualizer } from '@tanstack/react-virtual'
+import { useVirtualizer } from '@tanstack/react-virtual';
 
 function VirtualList({ items }: { items: Item[] }) {
-  const parentRef = useRef<HTMLDivElement>(null)
+  const parentRef = useRef<HTMLDivElement>(null);
 
   const virtualizer = useVirtualizer({
     count: items.length,
     getScrollElement: () => parentRef.current,
     estimateSize: () => 50,
-  })
+  });
 
   return (
     <div ref={parentRef} className="h-96 overflow-auto">
@@ -436,7 +449,7 @@ function VirtualList({ items }: { items: Item[] }) {
         ))}
       </div>
     </div>
-  )
+  );
 }
 
 // Preconnect for CDN domains
@@ -448,7 +461,7 @@ export default function RootLayout() {
       </head>
       <body>{children}</body>
     </html>
-  )
+  );
 }
 ```
 
@@ -464,13 +477,14 @@ export default function RootLayout() {
 - Destructive actions need confirmation modal or undo window—never immediate
 
 Example:
+
 ```tsx
 // URL state with nuqs
-import { useQueryState } from 'nuqs'
+import { useQueryState } from 'nuqs';
 
 function ProductList() {
-  const [category, setCategory] = useQueryState('category')
-  const [page, setPage] = useQueryState('page', { defaultValue: '1' })
+  const [category, setCategory] = useQueryState('category');
+  const [page, setPage] = useQueryState('page', { defaultValue: '1' });
 
   return (
     <div>
@@ -483,17 +497,17 @@ function ProductList() {
         Next page
       </Link>
     </div>
-  )
+  );
 }
 
 // Destructive action with confirmation
 function DeleteButton({ id }: { id: string }) {
-  const [showConfirm, setShowConfirm] = useState(false)
+  const [showConfirm, setShowConfirm] = useState(false);
 
   const handleDelete = async () => {
-    await deleteItem(id)
-    setShowConfirm(false)
-  }
+    await deleteItem(id);
+    setShowConfirm(false);
+  };
 
   return (
     <>
@@ -506,7 +520,7 @@ function DeleteButton({ id }: { id: string }) {
         />
       )}
     </>
-  )
+  );
 }
 ```
 
@@ -523,11 +537,12 @@ function DeleteButton({ id }: { id: string }) {
 - `autoFocus` sparingly—desktop only, single primary input; avoid on mobile
 
 Example:
+
 ```tsx
 // Touch-friendly button
 const button = cva({
-  base: 'touch-action-manipulation -webkit-tap-highlight-color-transparent'
-})
+  base: 'touch-action-manipulation -webkit-tap-highlight-color-transparent',
+});
 
 // Modal with overscroll containment
 function Modal() {
@@ -536,7 +551,7 @@ function Modal() {
       <div className="backdrop">...</div>
       <div className="content">...</div>
     </div>
-  )
+  );
 }
 ```
 
@@ -551,6 +566,7 @@ function Modal() {
 - Flex/grid over JS measurement for layout
 
 Example:
+
 ```tsx
 // Safe area handling for notched devices
 function FullBleedLayout() {
@@ -565,7 +581,7 @@ function FullBleedLayout() {
     >
       {children}
     </div>
-  )
+  );
 }
 ```
 
@@ -579,16 +595,15 @@ function FullBleedLayout() {
 - `<body>` matches page background
 
 Example:
+
 ```tsx
 // Dark mode with color-scheme
 export default function RootLayout() {
   return (
     <html className="dark" style={{ colorScheme: 'dark' }}>
-      <body className="bg-gray-950 text-gray-50">
-        {children}
-      </body>
+      <body className="bg-gray-950 text-gray-50">{children}</body>
     </html>
-  )
+  );
 }
 ```
 
@@ -599,12 +614,14 @@ export default function RootLayout() {
 When reviewing UI code, check for:
 
 ### HTML & Structure
+
 - [ ] Semantic HTML5 elements used appropriately
 - [ ] Proper heading hierarchy (no skipped levels)
 - [ ] Skip link for main content included
 - [ ] `scroll-margin-top` on heading anchors
 
 ### Accessibility
+
 - [ ] Visible focus states on all interactive elements
 - [ ] `:focus-visible` used instead of `:focus`
 - [ ] ARIA labels on icon-only buttons
@@ -612,6 +629,7 @@ When reviewing UI code, check for:
 - [ ] Screen reader optimization applied
 
 ### Forms
+
 - [ ] Inputs have `autocomplete` and meaningful `name`
 - [ ] Correct `type` and `inputmode` used
 - [ ] Paste not blocked
@@ -622,12 +640,14 @@ When reviewing UI code, check for:
 - [ ] Placeholders end with `…`
 
 ### Animation
+
 - [ ] `prefers-reduced-motion` honored
 - [ ] Only `transform`/`opacity` animated
 - [ ] Properties listed explicitly (no `transition: all`)
 - [ ] Animations interruptible
 
 ### Typography
+
 - [ ] Ellipsis (`…`) used instead of three dots
 - [ ] Curly quotes used
 - [ ] Non-breaking spaces for appropriate content
@@ -636,16 +656,19 @@ When reviewing UI code, check for:
 - [ ] `text-wrap: balance` on headings
 
 ### Content
+
 - [ ] Text containers handle overflow (`truncate`, `line-clamp`, `break-words`)
 - [ ] Flex children have `min-w-0` for truncation
 - [ ] Empty states handled gracefully
 
 ### Images
+
 - [ ] Explicit `width` and `height` on images
 - [ ] Lazy loading on below-fold images
 - [ ] Priority on above-fold critical images
 
 ### Performance
+
 - [ ] Large lists virtualized
 - [ ] No layout reads in render
 - [ ] DOM reads/writes batched
@@ -653,22 +676,26 @@ When reviewing UI code, check for:
 - [ ] Font preloading for critical fonts
 
 ### Navigation
+
 - [ ] URL state reflected in query params
 - [ ] Links use proper anchor tags
 - [ ] Deep linking implemented
 - [ ] Destructive actions have confirmation
 
 ### Touch
+
 - [ ] `touch-action: manipulation` applied
 - [ ] `overscroll-behavior: contain` in modals
 - [ ] `autoFocus` used sparingly
 
 ### Layout
+
 - [ ] Safe area insets handled for notched devices
 - [ ] Unwanted scrollbars prevented
 - [ ] Flex/grid used over JS measurement
 
 ### Theming
+
 - [ ] `color-scheme: dark` on html element for dark themes
 - [ ] Body background matches page background
 

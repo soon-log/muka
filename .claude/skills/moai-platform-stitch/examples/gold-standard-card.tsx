@@ -35,12 +35,20 @@ export const ActivityCard: React.FC<ActivityCardProps> = ({
         />
 
         <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm sm:text-base">
-          <a href="#" className="font-semibold text-primary hover:underline truncate">
+          <a
+            href="#"
+            className="font-semibold text-primary hover:underline truncate"
+          >
             {username}
           </a>
 
-          <span className={`inline-block px-2 py-0.5 text-xs font-semibold rounded-full ${isMerged ? 'bg-purple-500/30 text-purple-300' : 'bg-primary/30 text-primary'
-            }`}>
+          <span
+            className={`inline-block px-2 py-0.5 text-xs font-semibold rounded-full ${
+              isMerged
+                ? 'bg-purple-500/30 text-purple-300'
+                : 'bg-primary/30 text-primary'
+            }`}
+          >
             {action}
           </span>
 

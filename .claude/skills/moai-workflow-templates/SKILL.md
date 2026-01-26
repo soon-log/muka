@@ -8,14 +8,14 @@ modularized: true
 user-invocable: false
 tags:
   [
-    "workflow",
-    "templates",
-    "boilerplate",
-    "scaffolding",
-    "optimization",
-    "feedback",
+    'workflow',
+    'templates',
+    'boilerplate',
+    'scaffolding',
+    'optimization',
+    'feedback',
   ]
-status: "active"
+status: 'active'
 replaces: moai-core-code-templates, moai-core-feedback-templates, moai-project-template-optimizer
 updated: 2026-01-11
 
@@ -27,9 +27,19 @@ progressive_disclosure:
 
 # Trigger Conditions for Level 2 Loading
 triggers:
-  keywords: ["template", "boilerplate", "scaffolding", "code template", "project template", "feedback template", "GitHub issue", "template optimization"]
-  phases: ["plan"]
-  agents: ["manager-project", "builder-command", "builder-skill"]
+  keywords:
+    [
+      'template',
+      'boilerplate',
+      'scaffolding',
+      'code template',
+      'project template',
+      'feedback template',
+      'GitHub issue',
+      'template optimization',
+    ]
+  phases: ['plan']
+  agents: ['manager-project', 'builder-command', 'builder-skill']
 
 allowed-tools:
   - Read

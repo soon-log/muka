@@ -41,7 +41,10 @@ Vercel deployment configuration is managed through `vercel.json` and environment
       "source": "/api/(.*)",
       "headers": [
         { "key": "Access-Control-Allow-Origin", "value": "*" },
-        { "key": "Cache-Control", "value": "s-maxage=60, stale-while-revalidate" }
+        {
+          "key": "Cache-Control",
+          "value": "s-maxage=60, stale-while-revalidate"
+        }
       ]
     },
     {
@@ -96,17 +99,17 @@ vercel env rm DATABASE_URL production
 // next.config.js
 module.exports = {
   env: {
-    CUSTOM_KEY: process.env.CUSTOM_KEY
+    CUSTOM_KEY: process.env.CUSTOM_KEY,
   },
   // Public variables (available in browser)
   publicRuntimeConfig: {
-    apiUrl: process.env.NEXT_PUBLIC_API_URL
+    apiUrl: process.env.NEXT_PUBLIC_API_URL,
   },
   // Server-only variables
   serverRuntimeConfig: {
-    secretKey: process.env.API_SECRET
-  }
-}
+    secretKey: process.env.API_SECRET,
+  },
+};
 ```
 
 ## Preview Deployments
@@ -306,12 +309,21 @@ vercel dns add example.com www CNAME cname.vercel-dns.com
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains" },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains"
+        },
         { "key": "X-Content-Type-Options", "value": "nosniff" },
         { "key": "X-Frame-Options", "value": "DENY" },
         { "key": "X-XSS-Protection", "value": "1; mode=block" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        }
       ]
     }
   ]
@@ -327,9 +339,18 @@ vercel dns add example.com www CNAME cname.vercel-dns.com
       "source": "/api/(.*)",
       "headers": [
         { "key": "Access-Control-Allow-Credentials", "value": "true" },
-        { "key": "Access-Control-Allow-Origin", "value": "https://example.com" },
-        { "key": "Access-Control-Allow-Methods", "value": "GET,OPTIONS,PATCH,DELETE,POST,PUT" },
-        { "key": "Access-Control-Allow-Headers", "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version" }
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "https://example.com"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET,OPTIONS,PATCH,DELETE,POST,PUT"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
+        }
       ]
     }
   ]
@@ -339,6 +360,7 @@ vercel dns add example.com www CNAME cname.vercel-dns.com
 ## Context7 Integration
 
 For latest deployment configuration documentation, use:
+
 - Library: `/vercel/vercel`
 - Topics: vercel.json, environment-variables, deployment
 - Token allocation: 5000-8000 for comprehensive coverage

@@ -1,15 +1,15 @@
 ---
-name: "moai-platform-stitch"
-description: "Google Stitch MCP integration for AI-powered UI/UX design generation. Use when generating UI designs from text, extracting design context from screens, exporting screen code and images, or managing Stitch projects and screens."
+name: 'moai-platform-stitch'
+description: 'Google Stitch MCP integration for AI-powered UI/UX design generation. Use when generating UI designs from text, extracting design context from screens, exporting screen code and images, or managing Stitch projects and screens.'
 version: 1.1.0
-category: "platform"
+category: 'platform'
 modularized: false
 user-invocable: false
-tags: ["stitch", "google", "ui", "ux", "design", "code-generation", "ai-design"]
+tags: ['stitch', 'google', 'ui', 'ux', 'design', 'code-generation', 'ai-design']
 updated: 2026-01-23
-status: "active"
-context7-libraries: "/stitch/stitch-mcp"
-related-skills: "moai-domain-uiux, moai-domain-frontend, moai-foundation-claude"
+status: 'active'
+context7-libraries: '/stitch/stitch-mcp'
+related-skills: 'moai-domain-uiux, moai-domain-frontend, moai-foundation-claude'
 allowed-tools:
   - Read
   - Write
@@ -101,16 +101,19 @@ Google Cloud Setup:
 Step 1: Create a Google Cloud project at console.cloud.google.com
 
 Step 2: Enable the Stitch API by running:
+
 ```bash
 gcloud beta services mcp enable stitch.googleapis.com
 ```
 
 Step 3: Authenticate with Google Cloud:
+
 ```bash
 gcloud auth application-default login
 ```
 
 Step 4: Set environment variable in your shell profile (.bashrc, .zshrc):
+
 ```bash
 export GOOGLE_CLOUD_PROJECT="YOUR_PROJECT_ID"
 ```
@@ -118,6 +121,7 @@ export GOOGLE_CLOUD_PROJECT="YOUR_PROJECT_ID"
 ### MCP Configuration
 
 Add to .claude/.mcp.json:
+
 ```json
 {
   "mcpServers": {
@@ -135,6 +139,7 @@ Add to .claude/.mcp.json:
 ### Verification
 
 Verify Stitch MCP is working:
+
 ```bash
 # List available projects
 npx -y stitch-mcp list_projects
@@ -153,6 +158,7 @@ Phase 1: Extract Design Context
 If you have existing screens, extract their design context first to maintain consistency.
 
 Call extract_design_context with an existing screen_id to retrieve:
+
 - Color palette (primary, secondary, accent, neutral colors)
 - Typography (font families, sizes, weights, line heights)
 - Spacing (margin, padding, gap scales)
@@ -164,6 +170,7 @@ Phase 2: Generate New Screens
 Use generate_screen_from_text with the extracted design context to create new screens that maintain visual coherence.
 
 Provide a detailed prompt describing:
+
 - Screen purpose and user goals
 - Components needed (header, navigation, cards, forms)
 - Layout type (single column, grid, sidebar)
@@ -173,6 +180,7 @@ Provide a detailed prompt describing:
 Phase 3: Export Deliverables
 
 Export both code and images for complete design handoff:
+
 - fetch_screen_code for HTML/CSS/JavaScript implementation
 - fetch_screen_image for high-resolution PNG screenshots
 
@@ -224,6 +232,7 @@ Design Context Structure:
 The extracted design context includes:
 
 Colors:
+
 - Primary palette (main brand colors)
 - Secondary palette (supporting colors)
 - Accent colors (highlights, CTAs)
@@ -231,23 +240,27 @@ Colors:
 - Semantic colors (success, warning, error, info)
 
 Typography:
+
 - Font families (headings, body, code)
 - Font sizes (display, h1-h6, body, small, caption)
 - Font weights (light, regular, medium, semibold, bold)
 - Line heights (tight, normal, relaxed)
 
 Spacing:
+
 - Base spacing unit (4px, 8px, etc.)
 - Spacing scale (xs, sm, md, lg, xl)
 - Component spacing (padding, margins)
 
 Components:
+
 - Button styles (primary, secondary, ghost, danger)
 - Input styles (default, error, disabled)
 - Card styles (elevation, border, padding)
 - Modal styles (overlay, content, animation)
 
 Layout:
+
 - Grid system (columns, gaps)
 - Breakpoints (mobile, tablet, desktop)
 - Container max-widths
@@ -257,17 +270,20 @@ Layout:
 Exported Code Includes:
 
 HTML Structure:
+
 - Semantic HTML5 elements (header, main, section, nav, footer)
 - Accessibility attributes (aria-label, role, tabindex)
 - Meta tags for responsive design
 
 CSS Styling:
+
 - CSS variables for design tokens
 - Responsive media queries
 - Hover and focus states
 - Dark mode support (if applicable)
 
 JavaScript Functionality:
+
 - Form validation
 - Show/hide password toggle
 - Mobile menu toggle
@@ -286,6 +302,7 @@ Code Quality Features:
 Project Organization:
 
 Use create_project to organize screens by feature or product:
+
 ```bash
 create_project("E-commerce App")
 ```
@@ -299,6 +316,7 @@ Project Naming Best Practices:
 Screen Listing:
 
 Use list_screens to view all screens in a project:
+
 - View screen names and IDs
 - Check screen status (generated, exported)
 - Identify screens needing updates
@@ -306,6 +324,7 @@ Use list_screens to view all screens in a project:
 Screen Metadata:
 
 Use get_screen to retrieve:
+
 - Screen creation date
 - Last modification date
 - Generation parameters (prompt used)
@@ -400,11 +419,13 @@ This incremental approach prevents prompt complexity from overwhelming the AI mo
 Authentication Errors:
 
 If you receive authentication errors:
+
 1. Verify gcloud auth application-default login was successful
 2. Check GOOGLE_CLOUD_PROJECT environment variable is set
 3. Ensure Stitch API is enabled in your Google Cloud project
 
 Resolution:
+
 ```bash
 # Re-authenticate
 gcloud auth application-default login
@@ -419,6 +440,7 @@ echo $GOOGLE_CLOUD_PROJECT
 API Not Enabled Errors:
 
 If API is not enabled:
+
 ```bash
 gcloud beta services mcp enable stitch.googleapis.com
 ```
@@ -426,6 +448,7 @@ gcloud beta services mcp enable stitch.googleapis.com
 Quota Errors:
 
 If you exceed quota:
+
 - Wait for quota reset (typically daily)
 - Consider upgrading to paid Google Cloud tier
 - Optimize prompt specificity to reduce regeneration
@@ -435,6 +458,7 @@ If you exceed quota:
 Prompt Too Vague:
 
 If generation fails or produces poor results:
+
 - Add specific component list to prompt
 - Specify layout type explicitly
 - Include content hierarchy details
@@ -443,6 +467,7 @@ If generation fails or produces poor results:
 Prompt Too Complex:
 
 If generation times out or fails:
+
 - Simplify prompt to core components
 - Generate screen in multiple iterations
 - Start with basic layout, then add components
@@ -523,11 +548,13 @@ For comprehensive prompt templates organized by category (authentication, data s
 Generate product listing screen with consistent design context:
 
 Step 1: Extract context from existing home screen:
+
 ```
 extract_design_context(screen_id="home-screen-001")
 ```
 
 Step 2: Generate product screen:
+
 ```
 generate_screen_from_text(
   prompt="E-commerce product listing screen with 12 product cards in 3-column grid layout, filter sidebar on left with category links, sort dropdown at top right. Each product card has image, title in bold, price in accent color, add to cart button as primary CTA. Card hover effect with shadow increase. Mobile: single column, no sidebar. Desktop: sidebar + grid.",
@@ -537,6 +564,7 @@ generate_screen_from_text(
 ```
 
 Step 3: Export code and image:
+
 ```
 fetch_screen_code(screen_id="product-listing-001")
 fetch_screen_image(screen_id="product-listing-001")

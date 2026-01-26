@@ -52,16 +52,16 @@ pnpm dev
 
 ## 스크립트
 
-| 명령어 | 설명 |
-|--------|------|
-| `pnpm dev` | 개발 서버 실행 (Turbopack) |
-| `pnpm build` | 프로덕션 빌드 |
-| `pnpm start` | 프로덕션 서버 실행 |
-| `pnpm lint` | ESLint 검사 |
-| `pnpm format` | Prettier 포맷팅 |
-| `pnpm test` | 단위 테스트 (Vitest) |
-| `pnpm test:e2e` | E2E 테스트 (Playwright) |
-| `pnpm typecheck` | TypeScript 타입 검사 |
+| 명령어           | 설명                       |
+| ---------------- | -------------------------- |
+| `pnpm dev`       | 개발 서버 실행 (Turbopack) |
+| `pnpm build`     | 프로덕션 빌드              |
+| `pnpm start`     | 프로덕션 서버 실행         |
+| `pnpm lint`      | ESLint 검사                |
+| `pnpm format`    | Prettier 포맷팅            |
+| `pnpm test`      | 단위 테스트 (Vitest)       |
+| `pnpm test:e2e`  | E2E 테스트 (Playwright)    |
+| `pnpm typecheck` | TypeScript 타입 검사       |
 
 ## 환경변수
 

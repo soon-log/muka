@@ -1,8 +1,8 @@
 ---
-name: "moai-lang-javascript"
-description: "JavaScript ES2024+ development specialist covering Node.js 22 LTS, Bun 1.x (serve, SQLite, S3, shell, test), Deno 2.x, testing (Vitest, Jest), linting (ESLint 9, Biome), and backend frameworks (Express, Fastify, Hono). Use when developing JavaScript APIs, web applications, or Node.js projects."
+name: 'moai-lang-javascript'
+description: 'JavaScript ES2024+ development specialist covering Node.js 22 LTS, Bun 1.x (serve, SQLite, S3, shell, test), Deno 2.x, testing (Vitest, Jest), linting (ESLint 9, Biome), and backend frameworks (Express, Fastify, Hono). Use when developing JavaScript APIs, web applications, or Node.js projects.'
 version: 1.2.0
-category: "language"
+category: 'language'
 modularized: false
 
 # Progressive Disclosure Configuration
@@ -13,23 +13,37 @@ progressive_disclosure:
 
 # Trigger Conditions for Level 2 Loading
 triggers:
-  keywords: ["JavaScript", "Node.js", "Bun", "Deno", "Express", "Fastify", "Hono", "Vitest", "Jest", "ESLint", ".js", "package.json"]
-  languages: ["javascript", "js"]
+  keywords:
+    [
+      'JavaScript',
+      'Node.js',
+      'Bun',
+      'Deno',
+      'Express',
+      'Fastify',
+      'Hono',
+      'Vitest',
+      'Jest',
+      'ESLint',
+      '.js',
+      'package.json',
+    ]
+  languages: ['javascript', 'js']
 
 user-invocable: false
 tags:
   [
-    "language",
-    "javascript",
-    "nodejs",
-    "bun",
-    "deno",
-    "vitest",
-    "eslint",
-    "express",
+    'language',
+    'javascript',
+    'nodejs',
+    'bun',
+    'deno',
+    'vitest',
+    'eslint',
+    'express',
   ]
 updated: 2026-01-11
-status: "active"
+status: 'active'
 allowed-tools:
   - Read
   - Grep

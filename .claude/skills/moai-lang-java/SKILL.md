@@ -1,8 +1,8 @@
 ---
-name: "moai-lang-java"
-description: "Java 21 LTS development specialist covering Spring Boot 3.3, virtual threads, pattern matching, and enterprise patterns. Use when building enterprise applications, microservices, or Spring projects."
+name: 'moai-lang-java'
+description: 'Java 21 LTS development specialist covering Spring Boot 3.3, virtual threads, pattern matching, and enterprise patterns. Use when building enterprise applications, microservices, or Spring projects.'
 version: 1.1.0
-category: "language"
+category: 'language'
 modularized: false
 
 # Progressive Disclosure Configuration
@@ -13,15 +13,34 @@ progressive_disclosure:
 
 # Trigger Conditions for Level 2 Loading
 triggers:
-  keywords: ["Java", "Spring Boot", "Spring Framework", "JPA", "Hibernate", "Maven", "Gradle", ".java", "pom.xml", "build.gradle", "virtual thread"]
-  languages: ["java"]
+  keywords:
+    [
+      'Java',
+      'Spring Boot',
+      'Spring Framework',
+      'JPA',
+      'Hibernate',
+      'Maven',
+      'Gradle',
+      '.java',
+      'pom.xml',
+      'build.gradle',
+      'virtual thread',
+    ]
+  languages: ['java']
 
 user-invocable: false
-tags: ['java', 'spring-boot', 'jpa', 'hibernate', 'virtual-threads', 'enterprise']
-context7-libraries: ['/spring-projects/spring-boot', '/spring-projects/spring-framework', '/spring-projects/spring-security']
+tags:
+  ['java', 'spring-boot', 'jpa', 'hibernate', 'virtual-threads', 'enterprise']
+context7-libraries:
+  [
+    '/spring-projects/spring-boot',
+    '/spring-projects/spring-framework',
+    '/spring-projects/spring-security',
+  ]
 related-skills: ['moai-lang-kotlin', 'moai-domain-backend']
 updated: 2026-01-11
-status: "active"
+status: 'active'
 ---
 
 ## Quick Reference (30 seconds)

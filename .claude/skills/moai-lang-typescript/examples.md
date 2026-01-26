@@ -207,7 +207,7 @@ model Session {
 ### src/lib/db.ts
 
 ```typescript
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from '@prisma/client';
 
 const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;
@@ -216,10 +216,13 @@ const globalForPrisma = globalThis as unknown as {
 export const db =
   globalForPrisma.prisma ??
   new PrismaClient({
-    log: process.env.NODE_ENV === "development" ? ["query", "error", "warn"] : ["error"],
+    log:
+      process.env.NODE_ENV === 'development'
+        ? ['query', 'error', 'warn']
+        : ['error'],
   });
 
-if (process.env.NODE_ENV !== "production") {
+if (process.env.NODE_ENV !== 'production') {
   globalForPrisma.prisma = db;
 }
 ```
@@ -231,10 +234,10 @@ if (process.env.NODE_ENV !== "production") {
 ### src/server/trpc.ts
 
 ```typescript
-import { initTRPC, TRPCError } from "@trpc/server";
-import superjson from "superjson";
-import { ZodError } from "zod";
-import type { Context } from "./context";
+import { initTRPC, TRPCError } from '@trpc/server';
+import superjson from 'superjson';
+import { ZodError } from 'zod';
+import type { Context } from './context';
 
 const t = initTRPC.context<Context>().create({
   transformer: superjson,
@@ -255,7 +258,7 @@ export const publicProcedure = t.procedure;
 
 export const protectedProcedure = t.procedure.use(async ({ ctx, next }) => {
   if (!ctx.session?.user) {
-    throw new TRPCError({ code: "UNAUTHORIZED" });
+    throw new TRPCError({ code: 'UNAUTHORIZED' });
   }
   return next({
     ctx: {
@@ -267,8 +270,8 @@ export const protectedProcedure = t.procedure.use(async ({ ctx, next }) => {
 
 // Admin-only procedure
 export const adminProcedure = protectedProcedure.use(async ({ ctx, next }) => {
-  if (ctx.user.role !== "ADMIN") {
-    throw new TRPCError({ code: "FORBIDDEN" });
+  if (ctx.user.role !== 'ADMIN') {
+    throw new TRPCError({ code: 'FORBIDDEN' });
   }
   return next({ ctx });
 });
@@ -277,11 +280,11 @@ export const adminProcedure = protectedProcedure.use(async ({ ctx, next }) => {
 ### src/server/context.ts
 
 ```typescript
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-import { db } from "@/lib/db";
-import type { inferAsyncReturnType } from "@trpc/server";
-import type { FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
+import { db } from '@/lib/db';
+import type { inferAsyncReturnType } from '@trpc/server';
+import type { FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
 
 export async function createContext(opts: FetchCreateContextFnOptions) {
   const session = await getServerSession(authOptions);
@@ -299,16 +302,21 @@ export type Context = inferAsyncReturnType<typeof createContext>;
 ### src/server/routers/user.ts
 
 ```typescript
-import { z } from "zod";
-import { router, publicProcedure, protectedProcedure, adminProcedure } from "../trpc";
-import { TRPCError } from "@trpc/server";
-import bcrypt from "bcryptjs";
+import { z } from 'zod';
+import {
+  router,
+  publicProcedure,
+  protectedProcedure,
+  adminProcedure,
+} from '../trpc';
+import { TRPCError } from '@trpc/server';
+import bcrypt from 'bcryptjs';
 
 const UserSchema = z.object({
   id: z.string(),
   email: z.string().email(),
   name: z.string().nullable(),
-  role: z.enum(["USER", "ADMIN"]),
+  role: z.enum(['USER', 'ADMIN']),
   createdAt: z.date(),
 });
 
@@ -341,8 +349,8 @@ export const userRouter = router({
 
       if (!user) {
         throw new TRPCError({
-          code: "NOT_FOUND",
-          message: "User not found",
+          code: 'NOT_FOUND',
+          message: 'User not found',
         });
       }
 
@@ -390,8 +398,8 @@ export const userRouter = router({
       const where = search
         ? {
             OR: [
-              { name: { contains: search, mode: "insensitive" as const } },
-              { email: { contains: search, mode: "insensitive" as const } },
+              { name: { contains: search, mode: 'insensitive' as const } },
+              { email: { contains: search, mode: 'insensitive' as const } },
             ],
           }
         : {};
@@ -401,7 +409,7 @@ export const userRouter = router({
           where,
           skip,
           take: limit,
-          orderBy: { createdAt: "desc" },
+          orderBy: { createdAt: 'desc' },
           select: {
             id: true,
             email: true,
@@ -430,8 +438,8 @@ export const userRouter = router({
     .mutation(async ({ input, ctx }) => {
       if (input.id === ctx.user.id) {
         throw new TRPCError({
-          code: "BAD_REQUEST",
-          message: "Cannot delete your own account",
+          code: 'BAD_REQUEST',
+          message: 'Cannot delete your own account',
         });
       }
 
@@ -443,9 +451,9 @@ export const userRouter = router({
 ### src/server/routers/post.ts
 
 ```typescript
-import { z } from "zod";
-import { router, publicProcedure, protectedProcedure } from "../trpc";
-import { TRPCError } from "@trpc/server";
+import { z } from 'zod';
+import { router, publicProcedure, protectedProcedure } from '../trpc';
+import { TRPCError } from '@trpc/server';
 
 const CreatePostSchema = z.object({
   title: z.string().min(1).max(200),
@@ -482,7 +490,7 @@ export const postRouter = router({
           where,
           skip,
           take: limit,
-          orderBy: { createdAt: "desc" },
+          orderBy: { createdAt: 'desc' },
           include: {
             author: { select: { id: true, name: true } },
             tags: { select: { name: true } },
@@ -507,12 +515,12 @@ export const postRouter = router({
       });
 
       if (!post) {
-        throw new TRPCError({ code: "NOT_FOUND", message: "Post not found" });
+        throw new TRPCError({ code: 'NOT_FOUND', message: 'Post not found' });
       }
 
       // Only show unpublished to author
       if (!post.published && post.authorId !== ctx.session?.user?.id) {
-        throw new TRPCError({ code: "NOT_FOUND", message: "Post not found" });
+        throw new TRPCError({ code: 'NOT_FOUND', message: 'Post not found' });
       }
 
       return post;
@@ -550,11 +558,11 @@ export const postRouter = router({
       const post = await ctx.db.post.findUnique({ where: { id } });
 
       if (!post) {
-        throw new TRPCError({ code: "NOT_FOUND" });
+        throw new TRPCError({ code: 'NOT_FOUND' });
       }
 
       if (post.authorId !== ctx.user.id) {
-        throw new TRPCError({ code: "FORBIDDEN" });
+        throw new TRPCError({ code: 'FORBIDDEN' });
       }
 
       return ctx.db.post.update({
@@ -582,11 +590,11 @@ export const postRouter = router({
       const post = await ctx.db.post.findUnique({ where: { id: input.id } });
 
       if (!post) {
-        throw new TRPCError({ code: "NOT_FOUND" });
+        throw new TRPCError({ code: 'NOT_FOUND' });
       }
 
       if (post.authorId !== ctx.user.id) {
-        throw new TRPCError({ code: "FORBIDDEN" });
+        throw new TRPCError({ code: 'FORBIDDEN' });
       }
 
       return ctx.db.post.delete({ where: { id: input.id } });
@@ -596,19 +604,19 @@ export const postRouter = router({
   myDrafts: protectedProcedure.query(async ({ ctx }) => {
     return ctx.db.post.findMany({
       where: { authorId: ctx.user.id, published: false },
-      orderBy: { updatedAt: "desc" },
+      orderBy: { updatedAt: 'desc' },
       include: { tags: true },
     });
   }),
 });
 ```
 
-### src/server/routers/_app.ts
+### src/server/routers/\_app.ts
 
 ```typescript
-import { router } from "../trpc";
-import { userRouter } from "./user";
-import { postRouter } from "./post";
+import { router } from '../trpc';
+import { userRouter } from './user';
+import { postRouter } from './post';
 
 export const appRouter = router({
   user: userRouter,
@@ -625,15 +633,15 @@ export type AppRouter = typeof appRouter;
 ### src/lib/trpc.ts
 
 ```typescript
-import { createTRPCReact } from "@trpc/react-query";
-import { httpBatchLink, loggerLink } from "@trpc/client";
-import superjson from "superjson";
-import type { AppRouter } from "@/server/routers/_app";
+import { createTRPCReact } from '@trpc/react-query';
+import { httpBatchLink, loggerLink } from '@trpc/client';
+import superjson from 'superjson';
+import type { AppRouter } from '@/server/routers/_app';
 
 export const trpc = createTRPCReact<AppRouter>();
 
 function getBaseUrl() {
-  if (typeof window !== "undefined") return "";
+  if (typeof window !== 'undefined') return '';
   if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
   return `http://localhost:${process.env.PORT ?? 3000}`;
 }
@@ -642,8 +650,8 @@ export const trpcClient = trpc.createClient({
   links: [
     loggerLink({
       enabled: (opts) =>
-        process.env.NODE_ENV === "development" ||
-        (opts.direction === "down" && opts.result instanceof Error),
+        process.env.NODE_ENV === 'development' ||
+        (opts.direction === 'down' && opts.result instanceof Error),
     }),
     httpBatchLink({
       url: `${getBaseUrl()}/api/trpc`,
@@ -884,25 +892,25 @@ export function CreatePostForm() {
 ### vitest.config.ts
 
 ```typescript
-import { defineConfig } from "vitest/config";
-import react from "@vitejs/plugin-react";
-import path from "path";
+import { defineConfig } from 'vitest/config';
+import react from '@vitejs/plugin-react';
+import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
   test: {
-    environment: "jsdom",
-    setupFiles: ["./src/test/setup.ts"],
-    include: ["src/**/*.{test,spec}.{ts,tsx}"],
+    environment: 'jsdom',
+    setupFiles: ['./src/test/setup.ts'],
+    include: ['src/**/*.{test,spec}.{ts,tsx}'],
     coverage: {
-      provider: "v8",
-      reporter: ["text", "json", "html"],
-      exclude: ["node_modules/", "src/test/"],
+      provider: 'v8',
+      reporter: ['text', 'json', 'html'],
+      exclude: ['node_modules/', 'src/test/'],
     },
   },
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      '@': path.resolve(__dirname, './src'),
     },
   },
 });
@@ -911,27 +919,27 @@ export default defineConfig({
 ### src/test/setup.ts
 
 ```typescript
-import "@testing-library/jest-dom/vitest";
-import { cleanup } from "@testing-library/react";
-import { afterEach, vi } from "vitest";
+import '@testing-library/jest-dom/vitest';
+import { cleanup } from '@testing-library/react';
+import { afterEach, vi } from 'vitest';
 
 afterEach(() => {
   cleanup();
 });
 
 // Mock next/navigation
-vi.mock("next/navigation", () => ({
+vi.mock('next/navigation', () => ({
   useRouter: () => ({
     push: vi.fn(),
     replace: vi.fn(),
     back: vi.fn(),
   }),
-  usePathname: () => "/",
+  usePathname: () => '/',
   useSearchParams: () => new URLSearchParams(),
 }));
 ```
 
-### src/components/features/__tests__/PostCard.test.tsx
+### src/components/features/**tests**/PostCard.test.tsx
 
 ```typescript
 import { describe, it, expect, vi } from "vitest";
@@ -982,52 +990,52 @@ describe("PostCard", () => {
 ### E2E Test: playwright/posts.spec.ts
 
 ```typescript
-import { test, expect } from "@playwright/test";
+import { test, expect } from '@playwright/test';
 
-test.describe("Posts", () => {
+test.describe('Posts', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("/");
+    await page.goto('/');
   });
 
-  test("should display list of posts", async ({ page }) => {
-    await expect(page.getByRole("article")).toHaveCount.above(0);
+  test('should display list of posts', async ({ page }) => {
+    await expect(page.getByRole('article')).toHaveCount.above(0);
   });
 
-  test("should navigate to post detail", async ({ page }) => {
-    const firstPost = page.getByRole("article").first();
-    const title = await firstPost.getByRole("heading").textContent();
+  test('should navigate to post detail', async ({ page }) => {
+    const firstPost = page.getByRole('article').first();
+    const title = await firstPost.getByRole('heading').textContent();
 
-    await firstPost.getByRole("link").click();
+    await firstPost.getByRole('link').click();
 
     await expect(page).toHaveURL(/\/posts\/.+/);
-    await expect(page.getByRole("heading", { level: 1 })).toHaveText(title!);
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(title!);
   });
 
-  test("should filter posts by tag", async ({ page }) => {
-    await page.getByRole("button", { name: "react" }).click();
+  test('should filter posts by tag', async ({ page }) => {
+    await page.getByRole('button', { name: 'react' }).click();
 
-    const posts = page.getByRole("article");
+    const posts = page.getByRole('article');
     for (const post of await posts.all()) {
-      await expect(post.getByText("react")).toBeVisible();
+      await expect(post.getByText('react')).toBeVisible();
     }
   });
 });
 
-test.describe("Authenticated User", () => {
-  test.use({ storageState: "playwright/.auth/user.json" });
+test.describe('Authenticated User', () => {
+  test.use({ storageState: 'playwright/.auth/user.json' });
 
-  test("should create new post", async ({ page }) => {
-    await page.goto("/posts/new");
+  test('should create new post', async ({ page }) => {
+    await page.goto('/posts/new');
 
-    await page.getByLabel("Title").fill("My New Post");
-    await page.getByLabel("Content").fill("This is my new post content.");
-    await page.getByLabel("Tags").fill("test, e2e");
+    await page.getByLabel('Title').fill('My New Post');
+    await page.getByLabel('Content').fill('This is my new post content.');
+    await page.getByLabel('Tags').fill('test, e2e');
 
-    await page.getByRole("button", { name: "Create Post" }).click();
+    await page.getByRole('button', { name: 'Create Post' }).click();
 
     await expect(page).toHaveURL(/\/posts\/.+/);
-    await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-      "My New Post"
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText(
+      'My New Post'
     );
   });
 });
@@ -1060,13 +1068,15 @@ NEXT_PUBLIC_APP_URL="http://localhost:3000"
 ### src/lib/env.ts
 
 ```typescript
-import { z } from "zod";
+import { z } from 'zod';
 
 const envSchema = z.object({
   DATABASE_URL: z.string().url(),
   NEXTAUTH_URL: z.string().url(),
   NEXTAUTH_SECRET: z.string().min(32),
-  NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
+  NODE_ENV: z
+    .enum(['development', 'production', 'test'])
+    .default('development'),
   NEXT_PUBLIC_APP_URL: z.string().url().optional(),
 });
 
@@ -1074,10 +1084,10 @@ const parsed = envSchema.safeParse(process.env);
 
 if (!parsed.success) {
   console.error(
-    "Invalid environment variables:",
+    'Invalid environment variables:',
     JSON.stringify(parsed.error.format(), null, 2)
   );
-  throw new Error("Invalid environment variables");
+  throw new Error('Invalid environment variables');
 }
 
 export const env = parsed.data;

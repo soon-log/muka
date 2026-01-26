@@ -1,14 +1,23 @@
 ---
-name: "moai-foundation-quality"
-description: "Enterprise code quality orchestrator with TRUST 5 validation, proactive analysis, and automated best practices enforcement"
+name: 'moai-foundation-quality'
+description: 'Enterprise code quality orchestrator with TRUST 5 validation, proactive analysis, and automated best practices enforcement'
 version: 2.2.0
-category: "foundation"
+category: 'foundation'
 modularized: true
 user-invocable: false
-tags: ['foundation', 'quality', 'testing', 'validation', 'trust-5', 'best-practices', 'code-review']
+tags:
+  [
+    'foundation',
+    'quality',
+    'testing',
+    'validation',
+    'trust-5',
+    'best-practices',
+    'code-review',
+  ]
 aliases: ['moai-foundation-quality']
 updated: 2026-01-11
-status: "active"
+status: 'active'
 allowed-tools:
   - Read
   - Grep
@@ -25,41 +34,41 @@ progressive_disclosure:
 # Trigger Conditions for Level 2 Loading
 triggers:
   keywords:
-    - "quality"
-    - "testing"
-    - "test"
-    - "validation"
-    - "trust-5"
-    - "best practice"
-    - "code review"
-    - "linting"
-    - "coverage"
-    - "pytest"
-    - "security"
-    - "ci/cd"
-    - "quality gate"
-    - "proactive"
-    - "code smell"
-    - "technical debt"
-    - "refactoring"
+    - 'quality'
+    - 'testing'
+    - 'test'
+    - 'validation'
+    - 'trust-5'
+    - 'best practice'
+    - 'code review'
+    - 'linting'
+    - 'coverage'
+    - 'pytest'
+    - 'security'
+    - 'ci/cd'
+    - 'quality gate'
+    - 'proactive'
+    - 'code smell'
+    - 'technical debt'
+    - 'refactoring'
   agents:
-    - "manager-quality"
-    - "manager-ddd"
-    - "expert-testing"
-    - "expert-security"
-    - "expert-refactoring"
+    - 'manager-quality'
+    - 'manager-ddd'
+    - 'expert-testing'
+    - 'expert-security'
+    - 'expert-refactoring'
   phases:
-    - "run"
-    - "sync"
+    - 'run'
+    - 'sync'
   languages:
-    - "python"
-    - "javascript"
-    - "typescript"
-    - "java"
-    - "go"
-    - "rust"
-    - "cpp"
-    - "csharp"
+    - 'python'
+    - 'javascript'
+    - 'typescript'
+    - 'java'
+    - 'go'
+    - 'rust'
+    - 'cpp'
+    - 'csharp'
 ---
 
 # Enterprise Code Quality Orchestrator

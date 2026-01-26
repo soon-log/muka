@@ -8,15 +8,15 @@ user-invocable: false
 category: foundation
 tags:
   [
-    "foundation",
-    "context",
-    "session",
-    "token-optimization",
-    "state-management",
-    "multi-agent",
+    'foundation',
+    'context',
+    'session',
+    'token-optimization',
+    'state-management',
+    'multi-agent',
   ]
 updated: 2026-01-11
-status: "active"
+status: 'active'
 allowed-tools:
   - Read
   - Grep
@@ -34,31 +34,31 @@ progressive_disclosure:
 # Trigger Conditions for Level 2 Loading
 triggers:
   keywords:
-    - "token"
-    - "context"
-    - "session"
-    - "budget"
-    - "optimization"
-    - "handoff"
-    - "state"
-    - "memory"
-    - "/clear"
-    - "context window"
-    - "token limit"
-    - "session persistence"
-    - "context management"
-    - "multi-agent"
+    - 'token'
+    - 'context'
+    - 'session'
+    - 'budget'
+    - 'optimization'
+    - 'handoff'
+    - 'state'
+    - 'memory'
+    - '/clear'
+    - 'context window'
+    - 'token limit'
+    - 'session persistence'
+    - 'context management'
+    - 'multi-agent'
   agents:
-    - "manager-spec"
-    - "manager-ddd"
-    - "manager-strategy"
-    - "manager-quality"
-    - "manager-docs"
-    - "manager-project"
+    - 'manager-spec'
+    - 'manager-ddd'
+    - 'manager-strategy'
+    - 'manager-quality'
+    - 'manager-docs'
+    - 'manager-project'
   phases:
-    - "plan"
-    - "run"
-    - "sync"
+    - 'plan'
+    - 'run'
+    - 'sync'
 ---
 
 ## Quick Reference

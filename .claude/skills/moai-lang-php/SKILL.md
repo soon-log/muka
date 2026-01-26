@@ -1,8 +1,8 @@
 ---
-name: "moai-lang-php"
-description: "PHP 8.3+ development specialist covering Laravel 11, Symfony 7, Eloquent ORM, and modern PHP patterns. Use when developing PHP APIs, web applications, or Laravel/Symfony projects."
+name: 'moai-lang-php'
+description: 'PHP 8.3+ development specialist covering Laravel 11, Symfony 7, Eloquent ORM, and modern PHP patterns. Use when developing PHP APIs, web applications, or Laravel/Symfony projects.'
 version: 1.1.0
-category: "language"
+category: 'language'
 modularized: true
 
 # Progressive Disclosure Configuration
@@ -13,14 +13,26 @@ progressive_disclosure:
 
 # Trigger Conditions for Level 2 Loading
 triggers:
-  keywords: ["PHP", "Laravel", "Symfony", "Eloquent", "Doctrine", "PHPUnit", "Pest", ".php", "composer.json", "artisan"]
-  languages: ["php"]
+  keywords:
+    [
+      'PHP',
+      'Laravel',
+      'Symfony',
+      'Eloquent',
+      'Doctrine',
+      'PHPUnit',
+      'Pest',
+      '.php',
+      'composer.json',
+      'artisan',
+    ]
+  languages: ['php']
 
 user-invocable: false
 tags:
-  ["language", "php", "laravel", "symfony", "eloquent", "doctrine", "phpunit"]
+  ['language', 'php', 'laravel', 'symfony', 'eloquent', 'doctrine', 'phpunit']
 updated: 2026-01-11
-status: "active"
+status: 'active'
 allowed-tools:
   - Read
   - Grep

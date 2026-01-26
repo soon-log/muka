@@ -516,16 +516,19 @@ Video streaming interface with video player. Main area: video player with contro
 When extracting design context from existing screens, Stitch returns structured design tokens that can be referenced in prompts:
 
 **Color Tokens Reference:**
+
 ```
 "Use primary brand color for main button, secondary color for secondary button, accent color for highlights. Use neutral-500 for borders, neutral-800 for text. Use success color for confirmation states, warning color for alerts."
 ```
 
 **Typography Tokens Reference:**
+
 ```
 "Use heading font family for page titles (h1, h2), body font family for content. Use font-size-large for headlines, font-size-medium for subheadings, font-size-small for captions. Use font-weight-bold for emphasis, font-weight-regular for body text."
 ```
 
 **Spacing Tokens Reference:**
+
 ```
 "Use spacing-sm for tight layouts (4px), spacing-md for normal spacing (8px), spacing-lg for spacious layouts (16px). Use component-padding-md for card interiors, component-padding-lg for sections."
 ```
@@ -533,6 +536,7 @@ When extracting design context from existing screens, Stitch returns structured 
 ### Token Usage in Prompts
 
 **Example with Token References:**
+
 ```
 Login screen using extracted design context: primary-blue color for submit button, neutral-gray-100 for card background, font-family-Inter for all text, spacing-md (8px) between form fields. Use component-border-radius for card corners. Text color neutral-gray-800 for headings, neutral-gray-600 for body text.
 ```
@@ -540,11 +544,13 @@ Login screen using extracted design context: primary-blue color for submit butto
 ### Multi-Screen Consistency
 
 **Consistency Strategy:**
+
 ```
 Extract design context from home screen first, then pass to all subsequent screen generations. This ensures color palette, typography scale, and spacing system remain consistent across entire application.
 ```
 
 **Example Workflow:**
+
 1. Generate home screen
 2. Extract design context from home screen
 3. Generate all other screens with design_context parameter
@@ -552,6 +558,7 @@ Extract design context from home screen first, then pass to all subsequent scree
 ### Brand Guideline Adherence
 
 **Brand-Specific Prompts:**
+
 ```
 "Use brand color #FF5722 for primary actions, brand color #00BCD4 for secondary actions. Use brand font 'Roboto' for all text. Maintain brand spacing system (4px base unit, multiples of 4). Follow brand component styles: rounded buttons with 4px radius, cards with 8px radius, subtle 2px shadows."
 ```
@@ -563,11 +570,13 @@ Extract design context from home screen first, then pass to all subsequent scree
 ### ARIA Labels for Icon Buttons
 
 **Pattern:**
+
 ```
 "All icon buttons must have aria-label. Search button: 'Search products', Close button: 'Close dialog', Menu button: 'Open navigation menu', Settings button: 'Open settings'."
 ```
 
 **Example Prompt:**
+
 ```
 Header with search icon button (aria-label 'Search search'), notification bell icon (aria-label 'View notifications'), user avatar (aria-label 'User menu'). Ensure all interactive elements have accessible labels.
 ```
@@ -575,11 +584,13 @@ Header with search icon button (aria-label 'Search search'), notification bell i
 ### Keyboard Navigation Patterns
 
 **Pattern:**
+
 ```
 "All interactive elements must be keyboard accessible. Tab order follows visual flow (left to right, top to bottom). Focus indicators visible (2px solid outline, offset 2px). Enter and Space activate buttons and links. Escape closes modals and dropdowns. Arrow keys navigate within components (list boxes, tabs)."
 ```
 
 **Example Prompt:**
+
 ```
 Navigation menu with keyboard support. Tab moves between menu items. Enter activates link. Arrow keys open submenus. Escape closes open menu. Focus visible with blue outline. Skip to main content link at top of page.
 ```
@@ -587,11 +598,13 @@ Navigation menu with keyboard support. Tab moves between menu items. Enter activ
 ### Focus Indicators
 
 **Pattern:**
+
 ```
 "Custom focus styles for all interactive elements. Focus ring: 2px solid, offset 2px from element, color matches brand (usually blue). Ensure focus indicator has 3:1 contrast ratio against background. Remove default browser outline only if replacing with custom style."
 ```
 
 **Example Prompt:**
+
 ```
 Form inputs with custom focus styles. Default state: gray border. Focus state: blue border (2px), blue shadow (0 0 0 3px rgba(59, 130, 246, 0.1)). Error state: red border with red focus ring. Ensure keyboard users see focus indicator clearly.
 ```
@@ -599,11 +612,13 @@ Form inputs with custom focus styles. Default state: gray border. Focus state: b
 ### Color Contrast Requirements
 
 **Pattern:**
+
 ```
 "All text must meet WCAG AA contrast ratios. Normal text: 4.5:1 contrast against background. Large text (18pt+): 3:1 contrast. UI components: 3:1 contrast against adjacent colors. Interactive elements must have distinct focus and hover states with sufficient contrast."
 ```
 
 **Example Prompt:**
+
 ```
 Form with high contrast labels. Labels: dark gray (#1f2937) on white background (contrast ratio 15:1, exceeds AA). Required field asterisk: red (#dc2626) for visibility. Error messages: red (#dc2626) on white background. Link text: blue (#2563eb) with underline on hover.
 ```
@@ -611,11 +626,13 @@ Form with high contrast labels. Labels: dark gray (#1f2937) on white background 
 ### Screen Reader Optimization
 
 **Pattern:**
+
 ```
 "Semantic HTML structure. Use heading levels h1-h6 in correct order (h1 for page title, h2 for section titles). Use landmark elements: header, nav, main, section, article, aside, footer. Use lists for navigation (ul > li > a). Form labels associated with inputs (for attribute or aria-labelledby)."
 ```
 
 **Example Prompt:**
+
 ```
 Blog post page with semantic structure. h1: article title. Article element for main content. Section elements for introduction, body, conclusion. h2 for section headings. Aside for sidebar (related posts). Footer for page footer. Navigation in nav element with ul/li/a structure.
 ```
@@ -627,6 +644,7 @@ Blog post page with semantic structure. h1: article title. Article element for m
 ### Level 1: Basic Screen (Simple)
 
 **Prompt:**
+
 ```
 Login form with email input, password input, login button. Center on page. Use white background, blue button.
 ```
@@ -638,6 +656,7 @@ Login form with email input, password input, login button. Center on page. Use w
 ### Level 2: Standard Screen (Intermediate)
 
 **Prompt:**
+
 ```
 User registration form with centered card layout (500px). Email input, password input with show/hide toggle, confirm password input, full name input. Register button (primary), sign in link (secondary). Page title "Create Account", subtitle "Join us today". Validation errors below fields. Use white card, shadow, Inter font.
 ```
@@ -649,6 +668,7 @@ User registration form with centered card layout (500px). Email input, password 
 ### Level 3: Complex Screen (Advanced)
 
 **Prompt:**
+
 ```
 Multi-step registration wizard with progress indicator (3 steps: Account, Profile, Complete). Step 1: Email, password, confirm password, show/hide toggle. Step 2: Full name, phone input with country code dropdown, profile picture upload (drag and drop zone). Step 3: Success message with checkmark animation, "Go to Dashboard" button. Next/Back navigation buttons. Current step highlighted in progress bar. Center card (600px max-width). Use extracted design context. Mobile: single column, full-width card.
 ```
@@ -660,6 +680,7 @@ Multi-step registration wizard with progress indicator (3 steps: Account, Profil
 ### Level 4: Expert Screen (Expert)
 
 **Prompt:**
+
 ```
 Admin dashboard with sidebar navigation (logo, nav links with icons, user profile at bottom). Main content: header with page title "User Management", breadcrumb, search input, filter dropdown, "Add User" primary button. Data table with columns: ID, Name (avatar + text), Email, Role (badge), Status (colored dot + text), Actions (kebab menu). Sort indicators on headers. Row hover effect. Pagination at bottom. Sticky table header. Use design context from existing screens. Mobile: hide sidebar (hamburger menu), table transforms to card layout. Accessible: ARIA labels on all icon buttons, keyboard navigation for table.
 ```
@@ -677,26 +698,31 @@ Admin dashboard with sidebar navigation (logo, nav links with icons, user profil
 **Technique:** Start with basic layout, then add complexity in follow-up prompts.
 
 **Iteration 1 (Foundation):**
+
 ```
 Product listing page with 3-column grid of product cards.
 ```
 
 **Iteration 2 (Add Components):**
+
 ```
 Add product details to each card: image, title, price, add to cart button.
 ```
 
 **Iteration 3 (Add Interactions):**
+
 ```
 Add hover effects on cards (shadow increase, lift), focus ring on button.
 ```
 
 **Iteration 4 (Add Layout):**
+
 ```
 Add filter sidebar on left with category links, sort dropdown at top.
 ```
 
 **Iteration 5 (Refine):**
+
 ```
 Mobile: single column layout, hide sidebar. Desktop: 3-column grid with sidebar.
 ```
@@ -706,21 +732,25 @@ Mobile: single column layout, hide sidebar. Desktop: 3-column grid with sidebar.
 **Technique:** Generate individual components separately, then combine.
 
 **Step 1: Generate Navigation**
+
 ```
 Top navigation bar with logo, nav links (Home, Products, About), contact button.
 ```
 
 **Step 2: Generate Hero Section**
+
 ```
 Hero section with headline text, subheadline, primary CTA button, background image.
 ```
 
 **Step 3: Generate Features Grid**
+
 ```
 Features section with 3 cards in row, each card has icon, title, description.
 ```
 
 **Step 4: Combine in Full Page**
+
 ```
 Landing page with navigation bar, hero section below, features section below hero. Sticky header. Mobile: stack sections vertically.
 ```
@@ -732,26 +762,31 @@ Landing page with navigation bar, hero section below, features section below her
 ### Copy-Paste Ready Templates
 
 **Basic Form:**
+
 ```
 [Form name] form with [field list]. Center in [width]px card. [Button text] button. Use [color scheme].
 ```
 
 **Data Table:**
+
 ```
 Data table with columns: [column list]. [Feature list: sort, filter, pagination]. Sticky header. Row hover effect. [Mobile behavior].
 ```
 
 **Dashboard:**
+
 ```
 [Dashboard type] dashboard with [number] metric cards at top. [Chart types] below. Sidebar navigation. [Mobile behavior].
 ```
 
 **Modal:**
+
 ```
 [Modal type] modal with [width]px card. [Title], [message text]. [Primary button text], [secondary button text]. Overlay backdrop. [Animation].
 ```
 
 **Card Grid:**
+
 ```
 [Card type] cards in [number]-column grid. Each card has [content list]. [Hover effects]. [Mobile: column count].
 ```
